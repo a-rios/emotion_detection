@@ -36,7 +36,7 @@ class EmotionDataset(Dataset):
         # only get max len from training set
         if max_len is None:
             self.sources = [self.tokenize_input(utterance) for utterance in self.df[utterance_name]] # no truncation
-            self.max_len =  self._max_length(self.sources)
+            self.max_len =  self._calculate_max_length(self.sources)
         else:
             self.max_len = max_len
             self.sources = [self.tokenize_input(utterance, self.max_len) for utterance in self.df[utterance_name]]
@@ -45,10 +45,10 @@ class EmotionDataset(Dataset):
         return len(self.sources)
 
 
-    def _get_max_len(self,):
+    def get_max_len(self,):
         return self.max_len
 
-    def _get_emotions(self,):
+    def get_emotions(self,):
         return self.emotions
 
     def tokenize_input(self,
@@ -59,7 +59,7 @@ class EmotionDataset(Dataset):
         else:
             return self.tokenizer.encode(utterance, truncation=True, add_special_tokens=True, max_length=max_len)
 
-    def _max_length(self,
+    def _calculate_max_length(self,
                        utterances: List[List[int]]):
         return max([len(l) for l in utterances])
 

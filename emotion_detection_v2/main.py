@@ -1,9 +1,10 @@
 import argparse
 import torch
 import pytorch_lightning as pl
-from pytorch_lightning.loggers import TestTubeLogger, WandbLogger
+from pytorch_lightning.loggers import WandbLogger, TensorBoardLogger
 from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.callbacks.early_stopping import EarlyStopping
+from pytorch_lightning.callbacks import TQDMProgressBar
 from pytorch_lightning.plugins import DDPPlugin
 import random
 import logging
@@ -13,7 +14,7 @@ from transformers import AutoModel, AutoTokenizer, AutoConfig
 from .data import EmotionDataset
 from .model import EmotionPrediction
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('pytorch_lightning')
 logging.basicConfig(level=logging.INFO)
 
 def main(args):
@@ -25,15 +26,11 @@ def main(args):
 
 
     if args.wandb:
-        logger = WandbLogger(project=args.wandb)
+        logger = WandbLogger(project=args.wandb, entity=args.wandb_entity)
     else:
-        logger = TestTubeLogger(
-            save_dir=args.save_dir,
-            name=args.save_prefix,
-            version=0  # always use version=0
-        )
+        logger = TensorBoardLogger(save_dir=os.path.join(args.save_dir, args.save_prefix), name="tensorboard_logs")
 
-    model = EmotionPrediction(args, logger)
+    model = EmotionPrediction(args)
     tokenizer =  model.get_tokenizer()
 
     train_set = EmotionDataset(in_file=args.train,
@@ -43,8 +40,8 @@ def main(args):
                                   utterance_name=args.utterance_name,
                                   split_name="train",
                                   prediction_only=False)
-    emotions = train_set._get_emotions()
-    max_len = train_set._get_max_len()
+    emotions = train_set.get_emotions()
+    max_len = train_set.get_max_len()
     dev_set = EmotionDataset(in_file=args.dev,
                                   tokenizer=tokenizer,
                                   file_format=args.file_format,
@@ -70,16 +67,16 @@ def main(args):
                             test_set=test_set)
 
     print(f"train {emotions}, {max_len}")
-    print(f"dev {dev_set._get_emotions()}, {dev_set._get_max_len()}")
-    print(f"test {test_set._get_emotions()}, {test_set._get_max_len()}")
+    print(f"dev {dev_set.get_emotions()}, {dev_set.get_max_len()}")
+    print(f"test {test_set.get_emotions()}, {test_set.get_max_len()}")
 
-    model.lr_mode='max'
-    if args.early_stopping_metric == 'vloss':
-        model.lr_mode='min'
+    model.lr_mode='min' if args.early_stopping_metric == 'vloss' else 'max'
     early_stop_callback = EarlyStopping(monitor=args.early_stopping_metric, min_delta=args.min_delta, patience=args.patience, verbose=True, mode=model.lr_mode)
+    progress_bar_callback = TQDMProgressBar(refresh_rate=args.progress_bar_refresh_rate)
 
-    custom_checkpoint_path = "checkpoint{{epoch:02d}}_{{{}".format(args.early_stopping_metric )
+    custom_checkpoint_path = "checkpoint{{epoch:02d}}_{{{}".format(args.early_stopping_metric)
     custom_checkpoint_path += ':.5f}'
+    print(custom_checkpoint_path)
 
     checkpoint_callback = ModelCheckpoint(
         dirpath=os.path.join(args.save_dir, args.save_prefix),
@@ -101,10 +98,9 @@ def main(args):
                          limit_test_batches=False,
                          logger=logger,
                          enable_checkpointing=checkpoint_callback if not args.disable_checkpointing else False,
-                         progress_bar_refresh_rate=args.progress_bar_refresh_rate,
                          precision=32 if args.fp32 else 16, amp_backend='native', # amp_backend='apex', amp_level='O2', -> gradient overflows, can't use it
                          resume_from_checkpoint=args.resume_ckpt,
-                         callbacks=[early_stop_callback]
+                         callbacks=[early_stop_callback, progress_bar_callback]
                          )
     ## write config + tokenizer to save_dir
     model.sentence_classifier_model.save_pretrained(args.save_dir + "/" + args.save_prefix)
@@ -131,7 +127,6 @@ if __name__ == "__main__":
     parser.add_argument("--file_format", type=str, default="json", help="Input format, options are: json, csv, text (for prediction only). Default: json.")
     parser.add_argument("--label_name", type=str, help="Key/column name for labels.")
     parser.add_argument("--utterance_name", type=str, help="Key/column name for utterances.")
-    parser.add_argument("--prediction_only", action="store_true", help="Test set for prediction only, no labels, do not calculate scores.")
 
 
     # model args
@@ -155,7 +150,7 @@ if __name__ == "__main__":
     parser.add_argument("--val_every", type=float, default=1.0, help="Number of training steps between validations in percent of an epoch.")
     parser.add_argument("--val_percent_check", default=1.00, type=float, help='Percent of validation data used')
     parser.add_argument("--max_epochs", type=int, default=100000, help="Maximum number of epochs (will stop training even if patience for early stopping has not been reached).")
-    parser.add_argument("--early_stopping_metric", type=str, default='rougeL', help="Metric to be used for early stopping: vloss, rouge1, rouge2, rougeL, rougeLsum, bleu")
+    parser.add_argument("--early_stopping_metric", type=str, default='vloss', help="Metric to be used for early stopping: vloss, valid_ac_unweighted, macroF1, microF1")
     parser.add_argument("--patience", type=int, default=10, help="Patience for early stopping.")
     parser.add_argument("--min_delta", type=float, default=0.0, help="Minimum change in the monitored quantity to qualify as an improvement.")
     parser.add_argument("--lr_reduce_patience", type=int, default=8, help="Patience for LR reduction in Plateau scheduler.")
@@ -168,7 +163,9 @@ if __name__ == "__main__":
     parser.add_argument("--progress_bar_refresh_rate", type=int, default=0, help="How often to refresh progress bar (in steps). Value 0 disables progress bar.")
     parser.add_argument("--fp32", action='store_true', help="default is fp16. Use --fp32 to switch to fp32")
     parser.add_argument("--wandb", type=str, default=None, help="WandB project name to use if logging fine-tuning with WandB.")
+    parser.add_argument("--wandb_entity", type=str, default=None, help="WandB entity name to use if logging fine-tuning with WandB.")
     parser.add_argument("--debug", action='store_true', help="Debugging run (1 step only).")
+    parser.add_argument("--verbose", action='store_true', help="Print validation results to stdout .")
     #parser.add_argument("--print_params", action='store_true', help="Print parameter names and shapes.")
 
 

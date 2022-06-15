@@ -4,18 +4,15 @@ from typing import Optional, Dict, List, Tuple
 import pytorch_lightning as pl
 from .data import EmotionDataset
 import torch
+import numpy as np
 from functools import partial
 import torch.nn.functional as F
 from . import metrics
 
-
-
-
 class EmotionPrediction(pl.LightningModule):
-    def __init__(self, params, logger):
+    def __init__(self, params):
         super().__init__()
         self.args = params
-        self.logging = logger
         if self.args.from_pretrained is not None or args.resume_ckpt is not None: ## TODO check if this is true with resume_ckpt
             self._set_config()
             self._load_pretrained()
@@ -72,9 +69,8 @@ class EmotionPrediction(pl.LightningModule):
         elif split_name == "test":
             dataset = self.test_set
         else:
-            self.logging.log(f"Invalid split name: {split_name}")
+            self.log(f"Invalid split name: {split_name}")
 
-        #print(self.trainer._accelerator_connector.strategy)
         sampler = torch.utils.data.distributed.DistributedSampler(dataset, shuffle=is_train)
 
         return DataLoader(dataset, batch_size=self.args.batch_size, shuffle=(sampler is None),
@@ -114,19 +110,53 @@ class EmotionPrediction(pl.LightningModule):
         else:
             loss = output['loss'] # can be None if labels not set (predicting on test set)
 
-        self.log('train-loss', loss, on_step=True, on_epoch=True, prog_bar=True, logger=False, sync_dist=True)
+        lr = loss.new_zeros(1) + self.trainer.optimizers[0].param_groups[0]['lr']
+        tensorboard_logs = {'train_loss': loss, 'lr': lr,
+                            'mem': torch.cuda.memory_allocated(loss.device) / 1024 ** 3 if torch.cuda.is_available() else 0}
+        self.log('train_loss', loss, on_step=True, on_epoch=True, prog_bar=True, logger=True, sync_dist=True)
+
         return loss
 
     def validation_step(self, batch, batch_nb):
-        for p in self.model.parameters():
-            p.requires_grad = False
-
+        inputs, labels = batch
         outputs = self.forward(*batch)
-        if self.args.balanced_weight_warming:
-            vloss = self.compute_weighted_loss()
-        else:
-            vloss = output['loss']
-        ## TODO
+
+        vloss = outputs['loss']
+        scores = metrics.calculate_metrics(logits=outputs['logits'],
+                                                        labels=labels,
+                                                        class_weights=self.class_weights,
+                                                        emotions=self.train_set.get_emotions())
+        scores['vloss'] = vloss
+        return scores
+
+    def validation_epoch_end(self, outputs):
+        tqdm_dict = metrics.get_log_scores(outputs=outputs,
+                                           emotions=self.train_set.get_emotions(),
+                                           class_weights=self.class_weights)
+
+        self.log('vloss', tqdm_dict["vloss"], prog_bar=False)
+        self.log('valid_ac_unweighted', tqdm_dict["acc_unweighted"], prog_bar=False)
+        self.log('macroF1', tqdm_dict["macroF1_score"], prog_bar=False)
+        self.log('microF1', tqdm_dict["microF1_score"], prog_bar=False)
+
+        microF1_per_class = {}
+        for emotion_class in range(len(tqdm_dict["macroF1_per_class"])):
+            microF1_per_class[str(emotion_class)] = tqdm_dict["macroF1_per_class"][emotion_class]
+        self.log('F1 per class' ,microF1_per_class)
+
+        if self.args.verbose:
+            print(*tqdm_dict.items(), sep='\n')
+
+        result = {'progress_bar': tqdm_dict, 'log': tqdm_dict, 'vloss': tqdm_dict["vloss"]}
+
+        return result
+
+    def test_step(self, batch, batch_nb):
+        return self.validation_step(batch, batch_nb)
+
+    def test_epoch_end(self, outputs):
+        self.validation_epoch_end(outputs)
+        #print(result)
 
     def configure_optimizers(self):
         """
