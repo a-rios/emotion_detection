@@ -15,6 +15,7 @@ class EmotionDataset(Dataset):
                  label_name: str,
                  utterance_name: str,
                  split_name: str,
+                 remove_unaligned: bool = True,
                  prediction_only: Optional[bool]=False,
                  emotions: Optional[dict]=None,
                  max_len: Optional[int]=None):
@@ -31,15 +32,27 @@ class EmotionDataset(Dataset):
 
         # only get emotions from training set
         self.emotions = emotions if emotions is not None else {e:i for  i,e in  enumerate(self.df[self.label_name].unique()) }
-        self.labels = [l for l in self.df[label_name]]
 
         # only get max len from training set
-        if max_len is None:
-            self.sources = [self.tokenize_input(utterance) for utterance in self.df[utterance_name]] # no truncation
-            self.max_len =  self._calculate_max_length(self.sources)
+        if remove_unaligned:
+            if max_len is None:
+                self.sources, self.labels = zip(*[(self.tokenize_input(utterance), label) for utterance, label in zip(self.df[utterance_name], self.df[label_name])  if utterance != "NOT FOUND"]) # no truncation
+                self.max_len =  self._calculate_max_length(self.sources)
+            else:
+                self.max_len = max_len
+                self.sources, self.labels = zip(*[(self.tokenize_input(utterance, self.max_len), label) for utterance, label in zip (self.df[utterance_name],self.df[label_name]) if utterance != "NOT FOUND"  ])
         else:
-            self.max_len = max_len
-            self.sources = [self.tokenize_input(utterance, self.max_len) for utterance in self.df[utterance_name]]
+            if max_len is None:
+                self.sources, self.labels = zip(*[(self.tokenize_input(utterance), label) for utterance, label in zip(self.df[utterance_name], self.df[label_name]) ]) # no truncation
+                self.max_len =  self._calculate_max_length(self.sources)
+            else:
+                self.max_len = max_len
+                self.sources, self.labels = zip(*[(self.tokenize_input(utterance, self.max_len), label) for utterance, label in zip (self.df[utterance_name],self.df[label_name]) ])
+
+        print(f"Frequency of labels in {split_name}: ")
+        for e in self.emotions.keys():
+            print(f"({self.emotions[e]}:{e}, {self.labels.count(e)})", end=" ")
+        print()
 
     def __len__(self):
         return len(self.sources)
@@ -50,6 +63,9 @@ class EmotionDataset(Dataset):
 
     def get_emotions(self,):
         return self.emotions
+
+    def get_labels(self,):
+        return self.labels
 
     def tokenize_input(self,
                        utterance: str,

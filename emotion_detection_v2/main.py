@@ -39,6 +39,7 @@ def main(args):
                                   label_name=args.label_name,
                                   utterance_name=args.utterance_name,
                                   split_name="train",
+                                  remove_unaligned=not args.keep_unaligned,
                                   prediction_only=False)
     emotions = train_set.get_emotions()
     max_len = train_set.get_max_len()
@@ -48,6 +49,7 @@ def main(args):
                                   label_name=args.label_name,
                                   utterance_name=args.utterance_name,
                                   split_name="dev",
+                                  remove_unaligned=not args.keep_unaligned,
                                   emotions=emotions,
                                   max_len=max_len,
                                   prediction_only=False)
@@ -58,6 +60,7 @@ def main(args):
                                     label_name=args.label_name,
                                     utterance_name=args.utterance_name,
                                     split_name="test",
+                                    remove_unaligned=not args.keep_unaligned,
                                     emotions=emotions,
                                     max_len=max_len,
                                     prediction_only=False) # TODO predition test set (no labels)
@@ -66,21 +69,16 @@ def main(args):
                             dev_set=dev_set,
                             test_set=test_set)
 
-    print(f"train {emotions}, {max_len}")
-    print(f"dev {dev_set.get_emotions()}, {dev_set.get_max_len()}")
-    print(f"test {test_set.get_emotions()}, {test_set.get_max_len()}")
-
     model.lr_mode='min' if args.early_stopping_metric == 'vloss' else 'max'
     early_stop_callback = EarlyStopping(monitor=args.early_stopping_metric, min_delta=args.min_delta, patience=args.patience, verbose=True, mode=model.lr_mode)
     progress_bar_callback = TQDMProgressBar(refresh_rate=args.progress_bar_refresh_rate)
 
-    custom_checkpoint_path = "checkpoint{{epoch:02d}}_{{{}".format(args.early_stopping_metric)
-    custom_checkpoint_path += ':.5f}'
-    print(custom_checkpoint_path)
+    checkpoint_name = "checkpoint{{epoch:02d}}_{{{}".format(args.early_stopping_metric)
+    checkpoint_name += ':.3f}'
 
     checkpoint_callback = ModelCheckpoint(
         dirpath=os.path.join(args.save_dir, args.save_prefix),
-        filename=custom_checkpoint_path,
+        filename=checkpoint_name,
         save_top_k=args.save_top_k,
         verbose=True,
         monitor=args.early_stopping_metric,
@@ -97,10 +95,10 @@ def main(args):
                          limit_val_batches=args.val_percent_check,
                          limit_test_batches=False,
                          logger=logger,
-                         enable_checkpointing=checkpoint_callback if not args.disable_checkpointing else False,
+                         enable_checkpointing=True if not args.disable_checkpointing else False,
                          precision=32 if args.fp32 else 16, amp_backend='native', # amp_backend='apex', amp_level='O2', -> gradient overflows, can't use it
                          resume_from_checkpoint=args.resume_ckpt,
-                         callbacks=[early_stop_callback, progress_bar_callback]
+                         callbacks=[early_stop_callback, checkpoint_callback, progress_bar_callback]
                          )
     ## write config + tokenizer to save_dir
     model.sentence_classifier_model.save_pretrained(args.save_dir + "/" + args.save_prefix)
@@ -127,7 +125,7 @@ if __name__ == "__main__":
     parser.add_argument("--file_format", type=str, default="json", help="Input format, options are: json, csv, text (for prediction only). Default: json.")
     parser.add_argument("--label_name", type=str, help="Key/column name for labels.")
     parser.add_argument("--utterance_name", type=str, help="Key/column name for utterances.")
-
+    parser.add_argument("--keep_unaligned", action='store_true', help="Keep samples where sting == 'NOT FOUND' (aligned German Friends set).")
 
     # model args
     parser.add_argument("--batch_size", type=int, default=16, help="Batch size")

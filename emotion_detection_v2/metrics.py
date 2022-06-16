@@ -1,38 +1,42 @@
 import torch
 import numpy as np
 from typing import List
+#from torchmetrics import F1, ConfusionMatrix
+from torchmetrics.functional import confusion_matrix, stat_scores
 
-## code based on https://github.com/neeraj310/Master_Thesis_EA_In_ERC.git
 
 def calculate_metrics(logits: torch.tensor,
                       labels: torch.tensor,
                       class_weights: torch.tensor,
                       emotions: dict):
 
-    labelslist = labels.cpu().tolist()
-    preds = torch.argmax(logits, dim=1)
-    predslist = preds.cpu().tolist()
-
-    cm = np.zeros((len(emotions.keys()),len(emotions.keys())), dtype=np.int64) # recall
-
-    for label, pred in zip(labels.view(-1), preds.view(-1)):
-        cm[label.long(), pred.long()] += 1
-        cm = cm[0:len(emotions), 0:len(emotions)]
-        gt_labels_per_class =  cm.sum(axis = 1)
-        preds_per_class =  cm.sum(axis = 0)
-        tp = cm.diagonal()[0:]
-        fp = preds_per_class-tp
-        fn = gt_labels_per_class- tp
+    # outputs a tensor (len(emotions), 5), where 2nd dim for each label: [tp fp tn fn tp+fn]
+    stats =  stat_scores(preds=logits, target=labels.int(), reduce='macro', mdmc_reduce='global', top_k=1, num_classes=len(emotions), multiclass=None).int().cpu().numpy()
 
     return {'vloss': None,
-            'tp': tp,
-            'fp': fp,
-            'fn': fn,
-            'predicted_classes':preds_per_class,
-            'labels': gt_labels_per_class,
-            'y_pred':predslist,
-            'y_true':labelslist
+            'tp': stats[:,0],
+            'fp': stats[:,1],
+            'fn': stats[:,3],
+            'predicted_classes':stats.sum(axis=1),
+            'labels': labels.sum(dim=0).int().cpu().numpy(),
+            'y_pred': torch.argmax(logits, dim=1).int().cpu().numpy(),
+            'y_true': labels.int().cpu().numpy()
             }
+
+    ## torch code, TODO check torchmetrics.F1 to calculare scores
+
+    #stats =  stat_scores(preds=logits, target=labels.int(), reduce='macro', mdmc_reduce='global', top_k=1, num_classes=len(emotions), multiclass=None)
+    #return {'vloss': None,
+            #'tp': stats[:,0],
+            #'fp': stats[:,1],
+            #'fn': stats[:,3],
+            #'predicted_classes':stats.sum(dim=1),
+            #'labels': labels.sum(dim=0)
+            #'y_pred': torch.argmax(logits, dim=1)
+            #'y_true': labels
+            #}
+
+## code based on https://github.com/neeraj310/Master_Thesis_EA_In_ERC.git
 
 def calculate_f1_score(tp, fp, fn):
     prec_rec_f1 = {}

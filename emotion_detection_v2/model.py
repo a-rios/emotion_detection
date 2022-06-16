@@ -29,13 +29,12 @@ class EmotionPrediction(pl.LightningModule):
         self.tokenizer = AutoTokenizer.from_pretrained(self.args.tokenizer, use_fast=True, cache_dir=self.args.cache_dir)
 
     def _set_config(self):
-        self.config = AutoConfig.from_pretrained(self.args.from_pretrained)
+        self.config = AutoConfig.from_pretrained(self.args.from_pretrained, problem_type="multi_label_classification", num_labels=self.args.num_classes)
         self.config.attention_dropout = self.args.attention_dropout
         self.config.dropout = self.args.dropout
         self.config.activation_dropout = self.args.activation_dropout
         if self.config.use_cache and self.args.grad_ckpt:
             self.config.use_cache = False
-        self.config.num_labels=self.args.num_classes
 
     def get_tokenizer(self,):
         return self.tokenizer
@@ -51,7 +50,7 @@ class EmotionPrediction(pl.LightningModule):
 
         # set class/loss weights according to frequencies in train set
         self.loss_weights  = self.train_set.calc_loss_weights(rate=self.args.weight_rate, bww=self.args.balanced_weight_warming)
-        self.class_weights = self.train_set.calc_class_weights(rate=self.args.weight_rate)
+        self.class_weights = self.train_set.calc_class_weights(rate=self.args.weight_rate) # TODO check weights, seem off
 
     def get_attention_mask(self, input_ids):
         attention_mask = torch.ones(input_ids.shape, dtype=torch.long, device=input_ids.device)
@@ -165,12 +164,13 @@ class EmotionPrediction(pl.LightningModule):
         params = self.layerwise_lr(self.args.lr, self.args.layerwise_decay)
 
         self.optimizer = torch.optim.Adam(params, lr=self.args.lr)
-        self.scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(self.optimizer, T_max=10)
+        self.scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(self.optimizer, T_max=10) # TODO: expose this as argument?
         return [self.optimizer], [self.scheduler]
 
     def layerwise_lr(self, lr, decay):
         """
         returns grouped model parameters with layer-wise decaying learning rate
+        based on https://github.com/neeraj310/Master_Thesis_EA_In_ERC.git
         """
         m = self.sentence_classifier_model
         num_layers = m.config.num_hidden_layers
