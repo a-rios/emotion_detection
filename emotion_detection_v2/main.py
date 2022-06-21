@@ -104,7 +104,6 @@ def main(args):
     model.sentence_classifier_model.save_pretrained(args.save_dir + "/" + args.save_prefix)
     model.tokenizer.save_pretrained(args.save_dir + "/" + args.save_prefix)
     trainer.fit(model)
-    print("Training ended. Best checkpoint {} with {} {}.".format(model.best_checkpoint, model.best_metric, args.early_stopping_metric))
     trainer.test(model)
 
 if __name__ == "__main__":

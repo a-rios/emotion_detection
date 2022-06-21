@@ -29,10 +29,12 @@ class EmotionPrediction(pl.LightningModule):
         self.tokenizer = AutoTokenizer.from_pretrained(self.args.tokenizer, use_fast=True, cache_dir=self.args.cache_dir)
 
     def _set_config(self):
-        self.config = AutoConfig.from_pretrained(self.args.from_pretrained, problem_type="multi_label_classification", num_labels=self.args.num_classes)
-        self.config.attention_dropout = self.args.attention_dropout
-        self.config.dropout = self.args.dropout
-        self.config.activation_dropout = self.args.activation_dropout
+        self.config = AutoConfig.from_pretrained(self.args.from_pretrained, problem_type="single_label_classification", num_labels=self.args.num_classes)
+        self.config.classifier_dropout=0.1
+
+       #self.config.attention_dropout = self.args.attention_dropout
+        #self.config.dropout = self.args.dropout
+        #self.config.activation_dropout = self.args.activation_dropout
         if self.config.use_cache and self.args.grad_ckpt:
             self.config.use_cache = False
 
@@ -88,24 +90,22 @@ class EmotionPrediction(pl.LightningModule):
         self.test_dataloader_object = self._get_dataloader(self.test_dataloader_object, 'test', is_train=False)
         return self.test_dataloader_object
 
-    def compute_weighted_loss(self, logits, labels, weights):
+    def compute_weighted_loss(self, logits, labels):
         """ Weighted loss function """
-        loss = F.cross_entropy(logits, labels, weight=weights.to(labels.device), reduction='sum')
+        loss = F.cross_entropy(logits, labels, weight=self.loss_weights.to(labels.device), reduction='sum')
         loss /= labels.size(0)
         return loss
 
     def forward(self, input_ids, labels):
         attention_mask = self.get_attention_mask(input_ids)
-
         output = self.sentence_classifier_model(input_ids=input_ids, attention_mask=attention_mask, labels=labels)
-
         return output
 
     def training_step(self, batch, batch_nb):
         output = self.forward(*batch)
 
         if self.args.balanced_weight_warming:
-            loss = self.compute_weighted_loss(logits=output['logits'], labels=batch[1], weights=self.loss_weights )
+            loss = self.compute_weighted_loss(logits=output['logits'], labels=batch[1] )
         else:
             loss = output['loss'] # can be None if labels not set (predicting on test set)
 
@@ -123,7 +123,6 @@ class EmotionPrediction(pl.LightningModule):
         vloss = outputs['loss']
         scores = metrics.calculate_metrics(logits=outputs['logits'],
                                                         labels=labels,
-                                                        class_weights=self.class_weights,
                                                         emotions=self.train_set.get_emotions())
         scores['vloss'] = vloss
         return scores

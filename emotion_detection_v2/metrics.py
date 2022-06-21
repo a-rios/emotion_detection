@@ -7,34 +7,25 @@ from torchmetrics.functional import confusion_matrix, stat_scores
 
 def calculate_metrics(logits: torch.tensor,
                       labels: torch.tensor,
-                      class_weights: torch.tensor,
                       emotions: dict):
 
     # outputs a tensor (len(emotions), 5), where 2nd dim for each label: [tp fp tn fn tp+fn]
     stats =  stat_scores(preds=logits, target=labels.int(), reduce='macro', mdmc_reduce='global', top_k=1, num_classes=len(emotions), multiclass=None).int().cpu().numpy()
+    labels_one_hot = torch.nn.functional.one_hot(labels, num_classes=logits.shape[1])
+    y_pred = torch.argmax(logits, dim=1)
+    preds_per_class = torch.nn.functional.one_hot(y_pred, num_classes=logits.shape[1])
 
     return {'vloss': None,
             'tp': stats[:,0],
             'fp': stats[:,1],
             'fn': stats[:,3],
-            'predicted_classes':stats.sum(axis=1),
-            'labels': labels.sum(dim=0).int().cpu().numpy(),
-            'y_pred': torch.argmax(logits, dim=1).int().cpu().numpy(),
+            'labels':  labels_one_hot.sum(dim=0).cpu().numpy(), # (batch, classes) -> (classes)
+            'predicted_classes' : preds_per_class.sum(0).cpu().numpy(),
+            'y_pred': y_pred.cpu().numpy(),
             'y_true': labels.int().cpu().numpy()
             }
 
     ## torch code, TODO check torchmetrics.F1 to calculare scores
-
-    #stats =  stat_scores(preds=logits, target=labels.int(), reduce='macro', mdmc_reduce='global', top_k=1, num_classes=len(emotions), multiclass=None)
-    #return {'vloss': None,
-            #'tp': stats[:,0],
-            #'fp': stats[:,1],
-            #'fn': stats[:,3],
-            #'predicted_classes':stats.sum(dim=1),
-            #'labels': labels.sum(dim=0)
-            #'y_pred': torch.argmax(logits, dim=1)
-            #'y_true': labels
-            #}
 
 ## code based on https://github.com/neeraj310/Master_Thesis_EA_In_ERC.git
 
@@ -98,7 +89,7 @@ def get_log_scores(outputs: List[torch.tensor],
                 tqdm_dict[metric_name] += metric_value
 
         if metric_name in ['vloss']:
-                tqdm_dict[metric_name] =  tqdm_dict[metric_name] / len(outputs)
+            tqdm_dict[metric_name] =  tqdm_dict[metric_name] / len(outputs)
 
     for i in range(len(emotions)):
         if  tqdm_dict['labels'][i]:

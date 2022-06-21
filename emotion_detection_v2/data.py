@@ -83,8 +83,7 @@ class EmotionDataset(Dataset):
     def __getitem__(self, idx):
         input_ids = torch.tensor(self.sources[idx])
         label_id = self.emotions[self.labels[idx]]
-        labels = torch.zeros(len(self.emotions),)
-        labels[label_id] =1
+        labels = torch.tensor([label_id])
         return input_ids, labels
 
     @staticmethod
@@ -92,6 +91,7 @@ class EmotionDataset(Dataset):
         input_ids, labels = list(zip(*batch))
         input_ids = torch.nn.utils.rnn.pad_sequence(input_ids, batch_first=True, padding_value=pad_token_id)
         labels = torch.stack(labels)
+        labels = labels.squeeze(1)
         return input_ids, labels
 
     def calc_loss_weights(self,
