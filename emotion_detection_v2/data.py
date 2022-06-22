@@ -16,7 +16,7 @@ class EmotionDataset(Dataset):
                  utterance_name: str,
                  split_name: str,
                  remove_unaligned: bool = True,
-                 prediction_only: Optional[bool]=False,
+                 no_labels: Optional[bool]=False,
                  emotions: Optional[dict]=None,
                  max_len: Optional[int]=None):
         self.tokenizer = tokenizer

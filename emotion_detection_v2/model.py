@@ -4,6 +4,7 @@ from typing import Optional, Dict, List, Tuple
 import pytorch_lightning as pl
 from .data import EmotionDataset
 import torch
+import os
 import numpy as np
 from functools import partial
 import torch.nn.functional as F
@@ -13,7 +14,8 @@ class EmotionPrediction(pl.LightningModule):
     def __init__(self, params):
         super().__init__()
         self.args = params
-        if self.args.from_pretrained is not None or args.resume_ckpt is not None: ## TODO check if this is true with resume_ckpt
+
+        if self.args.from_pretrained is not None:
             self._set_config()
             self._load_pretrained()
 
@@ -30,11 +32,8 @@ class EmotionPrediction(pl.LightningModule):
 
     def _set_config(self):
         self.config = AutoConfig.from_pretrained(self.args.from_pretrained, problem_type="single_label_classification", num_labels=self.args.num_classes)
-        self.config.classifier_dropout=0.1
-
-       #self.config.attention_dropout = self.args.attention_dropout
-        #self.config.dropout = self.args.dropout
-        #self.config.activation_dropout = self.args.activation_dropout
+        self.config.classifier_dropout=self.args.classifier_dropout
+        self.config.dropout = self.args.dropout
         if self.config.use_cache and self.args.grad_ckpt:
             self.config.use_cache = False
 
@@ -50,9 +49,19 @@ class EmotionPrediction(pl.LightningModule):
         if test_set is not None:
             self.test_set = test_set
 
+        self._set_classes(train_set.get_emotions())
+
         # set class/loss weights according to frequencies in train set
         self.loss_weights  = self.train_set.calc_loss_weights(rate=self.args.weight_rate, bww=self.args.balanced_weight_warming)
-        self.class_weights = self.train_set.calc_class_weights(rate=self.args.weight_rate) # TODO check weights, seem off
+
+    def set_testset(self,
+                    test_set: EmotionDataset):
+        self.test_set = test_set
+
+    def _set_classes(self,
+                    emotions: dict):
+        self.emotions = emotions
+        self.emotions_inv = {v: k for k,v in self.emotions.items() }
 
     def get_attention_mask(self, input_ids):
         attention_mask = torch.ones(input_ids.shape, dtype=torch.long, device=input_ids.device)
@@ -123,24 +132,22 @@ class EmotionPrediction(pl.LightningModule):
         vloss = outputs['loss']
         scores = metrics.calculate_metrics(logits=outputs['logits'],
                                                         labels=labels,
-                                                        emotions=self.train_set.get_emotions())
+                                                        emotions=self.emotions)
         scores['vloss'] = vloss
         return scores
 
     def validation_epoch_end(self, outputs):
         tqdm_dict = metrics.get_log_scores(outputs=outputs,
-                                           emotions=self.train_set.get_emotions(),
-                                           class_weights=self.class_weights)
+                                           emotions=self.emotions)
 
         self.log('vloss', tqdm_dict["vloss"], prog_bar=False)
         self.log('valid_ac_unweighted', tqdm_dict["acc_unweighted"], prog_bar=False)
-        self.log('macroF1', tqdm_dict["macroF1_score"], prog_bar=False)
-        self.log('microF1', tqdm_dict["microF1_score"], prog_bar=False)
+        self.log('macroF1', tqdm_dict["macroF1"], prog_bar=False)
+        self.log('microF1', tqdm_dict["microF1"], prog_bar=False)
 
-        microF1_per_class = {}
-        for emotion_class in range(len(tqdm_dict["macroF1_per_class"])):
-            microF1_per_class[str(emotion_class)] = tqdm_dict["macroF1_per_class"][emotion_class]
-        self.log('F1 per class' ,microF1_per_class)
+        F1_per_class = {}
+        for emotion_class in range(len(tqdm_dict["F1_per_class"])):
+            self.log("F1 on " + self.emotions_inv[emotion_class], tqdm_dict["F1_per_class"][emotion_class], prog_bar=False)
 
         if self.args.verbose:
             print(*tqdm_dict.items(), sep='\n')
@@ -154,7 +161,6 @@ class EmotionPrediction(pl.LightningModule):
 
     def test_epoch_end(self, outputs):
         self.validation_epoch_end(outputs)
-        #print(result)
 
     def configure_optimizers(self):
         """
@@ -163,8 +169,13 @@ class EmotionPrediction(pl.LightningModule):
         params = self.layerwise_lr(self.args.lr, self.args.layerwise_decay)
 
         self.optimizer = torch.optim.Adam(params, lr=self.args.lr)
-        self.scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(self.optimizer, T_max=10) # TODO: expose this as argument?
-        return [self.optimizer], [self.scheduler]
+        if self.args.scheduler == 'cosine':
+            self.scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(self.optimizer, T_max=10) # TODO: expose this as argument?
+        elif self.args.scheduler == 'plateau':
+            self.scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(self.optimizer, mode='max', patience=self.args.lr_reduce_patience, factor=self.args.lr_reduce_factor, verbose=self.args.verbose)
+        #return [self.optimizer], [self.scheduler]
+        return {"optimizer": self.optimizer, "lr_scheduler": self.scheduler, "monitor": self.args.early_stopping_metric}
+
 
     def layerwise_lr(self, lr, decay):
         """
@@ -178,4 +189,17 @@ class EmotionPrediction(pl.LightningModule):
                             for l in range(num_layers)]
 
         return opt_parameters
+
+    def on_save_checkpoint(self, checkpoint) -> None:
+        checkpoint['emotions'] = self.emotions
+        checkpoint['emotions_inv'] = self.emotions_inv
+        checkpoint['loss_weights'] = self.loss_weights
+
+    def on_load_checkpoint(self, checkpoint) -> None:
+        self.config = AutoConfig.from_pretrained(os.path.join(self.args.save_dir, self.args.save_prefix))
+        self.load_state_dict(checkpoint['state_dict'])
+        self.emotions = checkpoint['emotions']
+        self.emotions_inv = checkpoint['emotions_inv']
+        self.loss_weights = checkpoint['loss_weights']
+        print(f"Loaded state dict from checkpoint.")
 

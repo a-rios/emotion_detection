@@ -8,8 +8,8 @@ from pytorch_lightning.callbacks import TQDMProgressBar
 from pytorch_lightning.plugins import DDPPlugin
 import random
 import logging
-import numpy as np
 import os
+import numpy as np
 from transformers import AutoModel, AutoTokenizer, AutoConfig
 from .data import EmotionDataset
 from .model import EmotionPrediction
@@ -40,9 +40,10 @@ def main(args):
                                   utterance_name=args.utterance_name,
                                   split_name="train",
                                   remove_unaligned=not args.keep_unaligned,
-                                  prediction_only=False)
+                                  no_labels=False)
     emotions = train_set.get_emotions()
     max_len = train_set.get_max_len()
+
     dev_set = EmotionDataset(in_file=args.dev,
                                   tokenizer=tokenizer,
                                   file_format=args.file_format,
@@ -52,7 +53,7 @@ def main(args):
                                   remove_unaligned=not args.keep_unaligned,
                                   emotions=emotions,
                                   max_len=max_len,
-                                  prediction_only=False)
+                                  no_labels=False)
     if args.test:
         test_set = EmotionDataset(in_file=args.test,
                                     tokenizer=tokenizer,
@@ -63,7 +64,7 @@ def main(args):
                                     remove_unaligned=not args.keep_unaligned,
                                     emotions=emotions,
                                     max_len=max_len,
-                                    prediction_only=False) # TODO predition test set (no labels)
+                                    no_labels=False) # TODO prediction test set (no labels)
 
     model.set_datasets(train_set=train_set,
                             dev_set=dev_set,
@@ -97,7 +98,6 @@ def main(args):
                          logger=logger,
                          enable_checkpointing=True if not args.disable_checkpointing else False,
                          precision=32 if args.fp32 else 16, amp_backend='native', # amp_backend='apex', amp_level='O2', -> gradient overflows, can't use it
-                         resume_from_checkpoint=args.resume_ckpt,
                          callbacks=[early_stop_callback, checkpoint_callback, progress_bar_callback]
                          )
     ## write config + tokenizer to save_dir
@@ -106,6 +106,7 @@ def main(args):
     trainer.fit(model)
     trainer.test(model)
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Emotion Detection")
     # pretrained args
@@ -113,7 +114,6 @@ if __name__ == "__main__":
     parser.add_argument("--from_pretrained", type=str, default=None,  help="Path to a checkpoint to load model weights but not training state")
     parser.add_argument("--save_dir", type=str, default='simplification', help="Directory to save models.")
     parser.add_argument("--save_prefix", type=str, default='test', help="subfolder in save_dir for this model")
-    parser.add_argument("--resume_ckpt", type=str, help="Path of a checkpoint to resume from")
     parser.add_argument("--num_sanity_val_steps", type=int, default=0,  help="Number of evaluation sanity steps to run before starting the training. Default: 0.")
     parser.add_argument("--cache_dir", type=str, default=None, help="Cache directory for huggingface models.")
 
@@ -133,9 +133,8 @@ if __name__ == "__main__":
     parser.add_argument("--accelerator", type=str, default="gpu", help="Pytorch lightning accelerator argument: cpu or gpu. Default: gpu.")
     parser.add_argument("--devices", type=int, nargs="+", required=True, help="Device id(s).")
     parser.add_argument("--seed", type=int, default=42, help="Seed")
-    parser.add_argument("--attention_dropout", type=float, default=0.1, help="attention dropout")
     parser.add_argument("--dropout", type=float, default=0.1, help="dropout")
-    parser.add_argument("--activation_dropout", type=float, default=0.0, help="activation_dropout")
+    parser.add_argument("--classifier_dropout", type=float, default=0.0, help="classifier_dropout")
     parser.add_argument('--layerwise_decay', default=0.95, type=float, help='layerwise decay factor for the learning rate of the pretrained Bert models.')
     parser.add_argument('--balanced_weight_warming', action="store_true", help = 'Use balanced weight warming for loss function')
     parser.add_argument("--weight_rate", type=float, default=1.0, help="Weight rate for scaling losses w.r.t. class frequency.")
@@ -143,12 +142,13 @@ if __name__ == "__main__":
 
 
     # optimization args:
-    parser.add_argument("--lr", type=float, default=0.00003, help="Initial learning rate")
+    parser.add_argument("--lr", type=float, default=2e-5, help="Initial learning rate")
     parser.add_argument("--val_every", type=float, default=1.0, help="Number of training steps between validations in percent of an epoch.")
     parser.add_argument("--val_percent_check", default=1.00, type=float, help='Percent of validation data used')
     parser.add_argument("--max_epochs", type=int, default=100000, help="Maximum number of epochs (will stop training even if patience for early stopping has not been reached).")
     parser.add_argument("--early_stopping_metric", type=str, default='vloss', help="Metric to be used for early stopping: vloss, valid_ac_unweighted, macroF1, microF1")
     parser.add_argument("--patience", type=int, default=10, help="Patience for early stopping.")
+    parser.add_argument("--scheduler", type=str, default="cosine", help="torch scheduler: 'cosine': CosineAnnealingLR or 'plateau': ReduceLROnPlateau")
     parser.add_argument("--min_delta", type=float, default=0.0, help="Minimum change in the monitored quantity to qualify as an improvement.")
     parser.add_argument("--lr_reduce_patience", type=int, default=8, help="Patience for LR reduction in Plateau scheduler.")
     parser.add_argument("--lr_reduce_factor", type=float, default=0.5, help="Learning rate reduce factor for Plateau scheduler.")
