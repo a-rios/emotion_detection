@@ -18,7 +18,8 @@ class EmotionDataset(Dataset):
                  remove_unaligned: bool = True,
                  no_labels: Optional[bool]=False,
                  emotions: Optional[dict]=None,
-                 max_len: Optional[int]=None):
+                 max_len: Optional[int]=None,
+                 save_texts: Optional[bool]=False):
         self.tokenizer = tokenizer
         self.file_format = file_format
         self.utterance_name = utterance_name
@@ -38,16 +39,24 @@ class EmotionDataset(Dataset):
             if max_len is None:
                 self.sources, self.labels = zip(*[(self.tokenize_input(utterance), label) for utterance, label in zip(self.df[utterance_name], self.df[label_name])  if utterance != "NOT FOUND"]) # no truncation
                 self.max_len =  self._calculate_max_length(self.sources)
+                if save_texts:
+                    self.texts = [utterance for utterance in self.df[utterance_name] if utterance != "NOT FOUND"]
             else:
                 self.max_len = max_len
                 self.sources, self.labels = zip(*[(self.tokenize_input(utterance, self.max_len), label) for utterance, label in zip (self.df[utterance_name],self.df[label_name]) if utterance != "NOT FOUND"  ])
+                if save_texts:
+                    self.texts = [utterance for utterance in self.df[utterance_name] if utterance != "NOT FOUND"]
         else:
             if max_len is None:
                 self.sources, self.labels = zip(*[(self.tokenize_input(utterance), label) for utterance, label in zip(self.df[utterance_name], self.df[label_name]) ]) # no truncation
                 self.max_len =  self._calculate_max_length(self.sources)
+                if save_texts:
+                    self.texts = [utterance for utterance in self.df[utterance_name]]
             else:
                 self.max_len = max_len
                 self.sources, self.labels = zip(*[(self.tokenize_input(utterance, self.max_len), label) for utterance, label in zip (self.df[utterance_name],self.df[label_name]) ])
+                if save_texts:
+                    self.texts = [utterance for utterance in self.df[utterance_name]]
 
         print(f"Frequency of labels in {split_name}: ")
         for e in self.emotions.keys():
@@ -84,15 +93,16 @@ class EmotionDataset(Dataset):
         input_ids = torch.tensor(self.sources[idx])
         label_id = self.emotions[self.labels[idx]]
         labels = torch.tensor([label_id])
-        return input_ids, labels
+        text = str(idx) +":" + self.texts[idx] if self.texts is not None else None # id: text
+        return input_ids, labels, text
 
     @staticmethod
     def collate_fn(batch, pad_token_id):
-        input_ids, labels = list(zip(*batch))
+        input_ids, labels, text = list(zip(*batch))
         input_ids = torch.nn.utils.rnn.pad_sequence(input_ids, batch_first=True, padding_value=pad_token_id)
         labels = torch.stack(labels)
         labels = labels.squeeze(1)
-        return input_ids, labels
+        return input_ids, labels, text
 
     def calc_loss_weights(self,
                           rate: float,

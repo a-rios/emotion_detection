@@ -9,6 +9,7 @@ import numpy as np
 from functools import partial
 import torch.nn.functional as F
 from . import metrics
+from . import utils
 
 class EmotionPrediction(pl.LightningModule):
     def __init__(self, params):
@@ -55,8 +56,14 @@ class EmotionPrediction(pl.LightningModule):
         self.loss_weights  = self.train_set.calc_loss_weights(rate=self.args.weight_rate, bww=self.args.balanced_weight_warming)
 
     def set_testset(self,
-                    test_set: EmotionDataset):
+                    test_set: EmotionDataset,
+                    out_format: Optional[str]=None,
+                    out_file: Optional[str]=None,
+                    no_labels: Optional[bool]=False):
         self.test_set = test_set
+        self.test_out_format = out_format
+        self.test_out_file = out_file
+        self.test_no_labels = no_labels # TODO: not needed? can be set in EmotionDataset
 
     def _set_classes(self,
                     emotions: dict):
@@ -105,7 +112,7 @@ class EmotionPrediction(pl.LightningModule):
         loss /= labels.size(0)
         return loss
 
-    def forward(self, input_ids, labels):
+    def forward(self, input_ids, labels, text):
         attention_mask = self.get_attention_mask(input_ids)
         output = self.sentence_classifier_model(input_ids=input_ids, attention_mask=attention_mask, labels=labels)
         return output
@@ -126,7 +133,7 @@ class EmotionPrediction(pl.LightningModule):
         return loss
 
     def validation_step(self, batch, batch_nb):
-        inputs, labels = batch
+        inputs, labels, texts = batch
         outputs = self.forward(*batch)
 
         vloss = outputs['loss']
@@ -134,6 +141,8 @@ class EmotionPrediction(pl.LightningModule):
                                                         labels=labels,
                                                         emotions=self.emotions)
         scores['vloss'] = vloss
+        scores['logits'] = outputs['logits']
+        scores['texts'] = texts
         return scores
 
     def validation_epoch_end(self, outputs):
@@ -160,7 +169,13 @@ class EmotionPrediction(pl.LightningModule):
         return self.validation_step(batch, batch_nb)
 
     def test_epoch_end(self, outputs):
-        self.validation_epoch_end(outputs)
+        result = self.validation_epoch_end(outputs)
+        if self.test_out_format is not None:
+            utils.probs_to_json(outputs=outputs,
+                                test_set=self.test_set,
+                                out_file=self.test_out_file,
+                                out_format=self.test_out_format,
+                                emotions_inv=self.emotions_inv)
 
     def configure_optimizers(self):
         """
@@ -202,4 +217,3 @@ class EmotionPrediction(pl.LightningModule):
         self.emotions_inv = checkpoint['emotions_inv']
         self.loss_weights = checkpoint['loss_weights']
         print(f"Loaded state dict from checkpoint.")
-

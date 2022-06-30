@@ -64,7 +64,8 @@ def main(args):
                                     remove_unaligned=not args.keep_unaligned,
                                     emotions=emotions,
                                     max_len=max_len,
-                                    no_labels=False) # TODO prediction test set (no labels)
+                                    no_labels=False,
+                                    save_texts=True) # TODO prediction test set (no labels)
 
     model.set_datasets(train_set=train_set,
                             dev_set=dev_set,
