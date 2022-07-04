@@ -19,49 +19,57 @@ class EmotionDataset(Dataset):
                  no_labels: Optional[bool]=False,
                  emotions: Optional[dict]=None,
                  max_len: Optional[int]=None,
-                 save_texts: Optional[bool]=False):
+                 save_texts: Optional[bool]=False,
+                 csv_delimiter: Optional[str]=","):
         self.tokenizer = tokenizer
         self.file_format = file_format
         self.utterance_name = utterance_name
         self.label_name = label_name
-        self.split_name =split_name # train, dev, test
+        self.split_name = split_name # train, dev, test
+        self.no_labels = no_labels
 
         if self.file_format == "json":
             self.df = pd.read_json(in_file)
         elif self.file_format == "csv":
-            self.df = pd.read_csv(in_file)
+            self.df = pd.read_csv(in_file, sep=csv_delimiter)
 
         # only get emotions from training set
         self.emotions = emotions if emotions is not None else {e:i for  i,e in  enumerate(self.df[self.label_name].unique()) }
 
-        # only get max len from training set
-        if remove_unaligned:
-            if max_len is None:
-                self.sources, self.labels = zip(*[(self.tokenize_input(utterance), label) for utterance, label in zip(self.df[utterance_name], self.df[label_name])  if utterance != "NOT FOUND"]) # no truncation
-                self.max_len =  self._calculate_max_length(self.sources)
-                if save_texts:
-                    self.texts = [utterance for utterance in self.df[utterance_name] if utterance != "NOT FOUND"]
-            else:
-                self.max_len = max_len
-                self.sources, self.labels = zip(*[(self.tokenize_input(utterance, self.max_len), label) for utterance, label in zip (self.df[utterance_name],self.df[label_name]) if utterance != "NOT FOUND"  ])
-                if save_texts:
-                    self.texts = [utterance for utterance in self.df[utterance_name] if utterance != "NOT FOUND"]
+        if self.no_labels: # only for testing
+            self.sources = [self.tokenize_input(utterance) for utterance in self.df[utterance_name] ] # no truncation
+            self.max_len =  self._calculate_max_length(self.sources)
+            if save_texts:
+                self.texts = [utterance for utterance in self.df[utterance_name]]
         else:
-            if max_len is None:
-                self.sources, self.labels = zip(*[(self.tokenize_input(utterance), label) for utterance, label in zip(self.df[utterance_name], self.df[label_name]) ]) # no truncation
-                self.max_len =  self._calculate_max_length(self.sources)
-                if save_texts:
-                    self.texts = [utterance for utterance in self.df[utterance_name]]
+            # only get max len from training set
+            if remove_unaligned:
+                if max_len is None:
+                    self.sources, self.labels = zip(*[(self.tokenize_input(utterance), label) for utterance, label in zip(self.df[utterance_name], self.df[label_name])  if utterance != "NOT FOUND"]) # no truncation
+                    self.max_len =  self._calculate_max_length(self.sources)
+                    if save_texts:
+                        self.texts = [utterance for utterance in self.df[utterance_name] if utterance != "NOT FOUND"]
+                else:
+                    self.max_len = max_len
+                    self.sources, self.labels = zip(*[(self.tokenize_input(utterance, self.max_len), label) for utterance, label in zip (self.df[utterance_name],self.df[label_name]) if utterance != "NOT FOUND"  ])
+                    if save_texts:
+                        self.texts = [utterance for utterance in self.df[utterance_name] if utterance != "NOT FOUND"]
             else:
-                self.max_len = max_len
-                self.sources, self.labels = zip(*[(self.tokenize_input(utterance, self.max_len), label) for utterance, label in zip (self.df[utterance_name],self.df[label_name]) ])
-                if save_texts:
-                    self.texts = [utterance for utterance in self.df[utterance_name]]
+                if max_len is None:
+                    self.sources, self.labels = zip(*[(self.tokenize_input(utterance), label) for utterance, label in zip(self.df[utterance_name], self.df[label_name]) ]) # no truncation
+                    self.max_len =  self._calculate_max_length(self.sources)
+                    if save_texts:
+                        self.texts = [utterance for utterance in self.df[utterance_name]]
+                else:
+                    self.max_len = max_len
+                    self.sources, self.labels = zip(*[(self.tokenize_input(utterance, self.max_len), label) for utterance, label in zip (self.df[utterance_name],self.df[label_name]) ])
+                    if save_texts:
+                        self.texts = [utterance for utterance in self.df[utterance_name]]
 
-        print(f"Frequency of labels in {split_name}: ")
-        for e in self.emotions.keys():
-            print(f"({self.emotions[e]}:{e}, {self.labels.count(e)})", end=" ")
-        print()
+            print(f"Frequency of labels in {split_name}: ")
+            for e in self.emotions.keys():
+                print(f"({self.emotions[e]}:{e}, {self.labels.count(e)})", end=" ")
+            print()
 
     def __len__(self):
         return len(self.sources)
@@ -91,17 +99,22 @@ class EmotionDataset(Dataset):
 
     def __getitem__(self, idx):
         input_ids = torch.tensor(self.sources[idx])
-        label_id = self.emotions[self.labels[idx]]
-        labels = torch.tensor([label_id])
-        text = str(idx) +":" + self.texts[idx] if self.texts is not None else None # id: text
+        labels = None
+        if not self.no_labels:
+            label_id = self.emotions[self.labels[idx]]
+            labels = torch.tensor([label_id])
+        text = None
+        if hasattr(self, "texts"):
+            text = str(idx) +":" + self.texts[idx] if self.texts is not None else None # id: text
         return input_ids, labels, text
 
     @staticmethod
     def collate_fn(batch, pad_token_id):
         input_ids, labels, text = list(zip(*batch))
         input_ids = torch.nn.utils.rnn.pad_sequence(input_ids, batch_first=True, padding_value=pad_token_id)
-        labels = torch.stack(labels)
-        labels = labels.squeeze(1)
+        if not None in labels:
+            labels = torch.stack(labels)
+            labels = labels.squeeze(1)
         return input_ids, labels, text
 
     def calc_loss_weights(self,

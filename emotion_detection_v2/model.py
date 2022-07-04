@@ -26,6 +26,7 @@ class EmotionPrediction(pl.LightningModule):
         self.best_metric = 10000 if self.args.early_stopping_metric == 'vloss' else 0 ## keep track of best dev value of whatever metric is used in early stopping callback
         self.num_not_improved = 0
         self.save_hyperparameters()
+        self.no_labels_run = False
 
     def _load_pretrained(self):
         self.sentence_classifier_model =  AutoModelForSequenceClassification.from_pretrained(self.args.from_pretrained, config=self.config, cache_dir=self.args.cache_dir)
@@ -58,12 +59,13 @@ class EmotionPrediction(pl.LightningModule):
     def set_testset(self,
                     test_set: EmotionDataset,
                     out_format: Optional[str]=None,
-                    out_file: Optional[str]=None,
-                    no_labels: Optional[bool]=False):
+                    out_file: Optional[str]=None):
         self.test_set = test_set
         self.test_out_format = out_format
         self.test_out_file = out_file
-        self.test_no_labels = no_labels # TODO: not needed? can be set in EmotionDataset
+
+    def set_no_labels_run(self,):
+        self.no_labels_run = True
 
     def _set_classes(self,
                     emotions: dict):
@@ -114,7 +116,10 @@ class EmotionPrediction(pl.LightningModule):
 
     def forward(self, input_ids, labels, text):
         attention_mask = self.get_attention_mask(input_ids)
-        output = self.sentence_classifier_model(input_ids=input_ids, attention_mask=attention_mask, labels=labels)
+        if self.no_labels_run:
+            output = self.sentence_classifier_model(input_ids=input_ids, attention_mask=attention_mask)
+        else:
+            output = self.sentence_classifier_model(input_ids=input_ids, attention_mask=attention_mask, labels=labels)
         return output
 
     def training_step(self, batch, batch_nb):
@@ -135,34 +140,38 @@ class EmotionPrediction(pl.LightningModule):
     def validation_step(self, batch, batch_nb):
         inputs, labels, texts = batch
         outputs = self.forward(*batch)
-
-        vloss = outputs['loss']
-        scores = metrics.calculate_metrics(logits=outputs['logits'],
+        scores = {}
+        vloss = None
+        if not self.no_labels_run:
+            vloss = outputs['loss']
+            scores = metrics.calculate_metrics(logits=outputs['logits'],
                                                         labels=labels,
                                                         emotions=self.emotions)
-        scores['vloss'] = vloss
+            scores['vloss'] = vloss
+
         scores['logits'] = outputs['logits']
         scores['texts'] = texts
         return scores
 
     def validation_epoch_end(self, outputs):
-        tqdm_dict = metrics.get_log_scores(outputs=outputs,
-                                           emotions=self.emotions)
+        result = None
+        if not self.no_labels_run:
+            tqdm_dict = metrics.get_log_scores(outputs=outputs,
+                                            emotions=self.emotions)
 
-        self.log('vloss', tqdm_dict["vloss"], prog_bar=False)
-        self.log('valid_ac_unweighted', tqdm_dict["acc_unweighted"], prog_bar=False)
-        self.log('macroF1', tqdm_dict["macroF1"], prog_bar=False)
-        self.log('microF1', tqdm_dict["microF1"], prog_bar=False)
+            self.log('vloss', tqdm_dict["vloss"], prog_bar=False)
+            self.log('valid_ac_unweighted', tqdm_dict["acc_unweighted"], prog_bar=False)
+            self.log('macroF1', tqdm_dict["macroF1"], prog_bar=False)
+            self.log('microF1', tqdm_dict["microF1"], prog_bar=False)
 
-        F1_per_class = {}
-        for emotion_class in range(len(tqdm_dict["F1_per_class"])):
-            self.log("F1 on " + self.emotions_inv[emotion_class], tqdm_dict["F1_per_class"][emotion_class], prog_bar=False)
+            F1_per_class = {}
+            for emotion_class in range(len(tqdm_dict["F1_per_class"])):
+                self.log("F1 on " + self.emotions_inv[emotion_class], tqdm_dict["F1_per_class"][emotion_class], prog_bar=False)
 
-        if self.args.verbose:
-            print(*tqdm_dict.items(), sep='\n')
+            if self.args.verbose:
+                print(*tqdm_dict.items(), sep='\n')
 
-        result = {'progress_bar': tqdm_dict, 'log': tqdm_dict, 'vloss': tqdm_dict["vloss"]}
-
+            result = {'progress_bar': tqdm_dict, 'log': tqdm_dict, 'vloss': tqdm_dict["vloss"]}
         return result
 
     def test_step(self, batch, batch_nb):
