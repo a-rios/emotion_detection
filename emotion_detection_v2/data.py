@@ -18,7 +18,6 @@ class EmotionDataset(Dataset):
                  remove_unaligned: bool = True,
                  no_labels: Optional[bool]=False,
                  emotions: Optional[dict]=None,
-                 max_len: Optional[int]=None,
                  save_texts: Optional[bool]=False,
                  csv_delimiter: Optional[str]=","):
         self.tokenizer = tokenizer
@@ -37,46 +36,28 @@ class EmotionDataset(Dataset):
         self.emotions = emotions if emotions is not None else {e:i for  i,e in  enumerate(self.df[self.label_name].unique()) }
 
         if self.no_labels: # only for testing
-            self.sources = [self.tokenize_input(utterance) for utterance in self.df[utterance_name] ] # no truncation
-            self.max_len =  self._calculate_max_length(self.sources)
+            self.sources = [self.tokenize_input(utterance) for utterance in self.df[utterance_name] ]
             if save_texts:
                 self.texts = [utterance for utterance in self.df[utterance_name]]
         else:
             # only get max len from training set
             if remove_unaligned:
-                if max_len is None:
-                    self.sources, self.labels = zip(*[(self.tokenize_input(utterance), label) for utterance, label in zip(self.df[utterance_name], self.df[label_name])  if utterance != "NOT FOUND"]) # no truncation
-                    self.max_len =  self._calculate_max_length(self.sources)
-                    if save_texts:
-                        self.texts = [utterance for utterance in self.df[utterance_name] if utterance != "NOT FOUND"]
-                else:
-                    self.max_len = max_len
-                    self.sources, self.labels = zip(*[(self.tokenize_input(utterance, self.max_len), label) for utterance, label in zip (self.df[utterance_name],self.df[label_name]) if utterance != "NOT FOUND"  ])
-                    if save_texts:
-                        self.texts = [utterance for utterance in self.df[utterance_name] if utterance != "NOT FOUND"]
+                self.sources, self.labels = zip(*[(self.tokenize_input(utterance), label) for utterance, label in zip(self.df[utterance_name], self.df[label_name])  if utterance != "NOT FOUND"])
+                if save_texts:
+                    self.texts = [utterance for utterance in self.df[utterance_name] if utterance != "NOT FOUND"]
             else:
-                if max_len is None:
-                    self.sources, self.labels = zip(*[(self.tokenize_input(utterance), label) for utterance, label in zip(self.df[utterance_name], self.df[label_name]) ]) # no truncation
-                    self.max_len =  self._calculate_max_length(self.sources)
-                    if save_texts:
-                        self.texts = [utterance for utterance in self.df[utterance_name]]
-                else:
-                    self.max_len = max_len
-                    self.sources, self.labels = zip(*[(self.tokenize_input(utterance, self.max_len), label) for utterance, label in zip (self.df[utterance_name],self.df[label_name]) ])
-                    if save_texts:
-                        self.texts = [utterance for utterance in self.df[utterance_name]]
+                self.sources, self.labels = zip(*[(self.tokenize_input(utterance), label) for utterance, label in zip(self.df[utterance_name], self.df[label_name]) ]) # no truncation
+                if save_texts:
+                    self.texts = [utterance for utterance in self.df[utterance_name]]
 
             print(f"Frequency of labels in {split_name}: ")
+            print("\t{:<25}{:<25}Number of Samples:".format("Key:", "Emotion:"))
             for e in self.emotions.keys():
-                print(f"({self.emotions[e]}:{e}, {self.labels.count(e)})", end=" ")
+                print(f"\t{self.emotions[e]:<25}{e:<25}{self.labels.count(e)}")
             print()
 
     def __len__(self):
         return len(self.sources)
-
-
-    def get_max_len(self,):
-        return self.max_len
 
     def get_emotions(self,):
         return self.emotions
@@ -85,17 +66,8 @@ class EmotionDataset(Dataset):
         return self.labels
 
     def tokenize_input(self,
-                       utterance: str,
-                       max_len: Optional[int]=None):
-        if max_len is None:
-            return self.tokenizer.encode(utterance, truncation=False, add_special_tokens=True)
-        else:
-            return self.tokenizer.encode(utterance, truncation=True, add_special_tokens=True, max_length=max_len)
-
-    def _calculate_max_length(self,
-                       utterances: List[List[int]]):
-        return max([len(l) for l in utterances])
-
+                       utterance: str):
+        return self.tokenizer.encode(utterance, truncation=False, add_special_tokens=True)
 
     def __getitem__(self, idx):
         input_ids = torch.tensor(self.sources[idx])

@@ -169,7 +169,11 @@ class EmotionPrediction(pl.LightningModule):
                 self.log("F1 on " + self.emotions_inv[emotion_class], tqdm_dict["F1_per_class"][emotion_class], prog_bar=False)
 
             if self.args.verbose:
-                print(*tqdm_dict.items(), sep='\n')
+                for k, v in tqdm_dict.items():
+                    if torch.is_tensor(v):
+                        v = v.tolist()
+                    print(f"{k}: {v}")
+                #print(*tqdm_dict.items(), sep='\n')
 
             result = {'progress_bar': tqdm_dict, 'log': tqdm_dict, 'vloss': tqdm_dict["vloss"]}
         return result

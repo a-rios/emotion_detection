@@ -38,7 +38,6 @@ if __name__ == "__main__":
     parser.add_argument('--batch_size', type=int, default=32)
     parser.add_argument("--accelerator", type=str, default="gpu", help="Pytorch lightning accelerator argument: cpu or gpu. Default: gpu.")
     parser.add_argument("--devices", type=int, nargs="+", required=True, help="Device id(s).")
-    #parser.add_argument("--cache_dir", type=str, default=None, help="Cache directory for huggingface models.")
     parser.add_argument("--test", type=str, default=None, required=True, help="Path to the source test file (to evaluate after training is finished).")
     parser.add_argument("--input_format", type=str, default="json", required=True, help="Input format, options are: json, csv. Default: json.")
     parser.add_argument("--csv_delimiter", type=str, default=",", help="Delimiter to read in csv. Default: comma.")
@@ -52,4 +51,3 @@ if __name__ == "__main__":
     args = parser.parse_args()
     main(args)
 
-## TODO: predict without labels

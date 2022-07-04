@@ -42,7 +42,6 @@ def main(args):
                                   remove_unaligned=not args.keep_unaligned,
                                   no_labels=False)
     emotions = train_set.get_emotions()
-    max_len = train_set.get_max_len()
 
     dev_set = EmotionDataset(in_file=args.dev,
                                   tokenizer=tokenizer,
@@ -52,7 +51,6 @@ def main(args):
                                   split_name="dev",
                                   remove_unaligned=not args.keep_unaligned,
                                   emotions=emotions,
-                                  max_len=max_len,
                                   no_labels=False)
     if args.test:
         test_set = EmotionDataset(in_file=args.test,
@@ -63,9 +61,8 @@ def main(args):
                                     split_name="test",
                                     remove_unaligned=not args.keep_unaligned,
                                     emotions=emotions,
-                                    max_len=max_len,
                                     no_labels=False,
-                                    save_texts=True) # TODO prediction test set (no labels)
+                                    save_texts=True)
 
     model.set_datasets(train_set=train_set,
                             dev_set=dev_set,
