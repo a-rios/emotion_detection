@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 from typing import List
-from torchmetrics.functional import confusion_matrix, stat_scores, f1_score, accuracy
+from torchmetrics.functional import stat_scores, f1_score, accuracy
 
 def calculate_metrics(logits: torch.tensor,
                       labels: torch.tensor,
