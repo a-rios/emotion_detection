@@ -31,6 +31,10 @@ class EmotionPrediction(pl.LightningModule):
     def _load_pretrained(self):
         self.sentence_classifier_model =  AutoModelForSequenceClassification.from_pretrained(self.args.from_pretrained, config=self.config, cache_dir=self.args.cache_dir)
         self.tokenizer = AutoTokenizer.from_pretrained(self.args.tokenizer, use_fast=True, cache_dir=self.args.cache_dir)
+        if self.args.max_input_length is not None:
+            self.max_input_length = self.args.max_input_length
+        else:
+            self.max_input_length = self.config.max_position_embeddings if hasattr(self.config, "max_position_embeddings") else 512
 
     def _set_config(self):
         self.config = AutoConfig.from_pretrained(self.args.from_pretrained, problem_type="single_label_classification", num_labels=self.args.num_classes)

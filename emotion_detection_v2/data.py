@@ -15,6 +15,7 @@ class EmotionDataset(Dataset):
                  label_name: str,
                  utterance_name: str,
                  split_name: str,
+                 max_length: int,
                  remove_unaligned: bool = True,
                  no_labels: Optional[bool]=False,
                  emotions: Optional[dict]=None,
@@ -26,6 +27,7 @@ class EmotionDataset(Dataset):
         self.label_name = label_name
         self.split_name = split_name # train, dev, test
         self.no_labels = no_labels
+        self.max_length = max_length
 
         if self.file_format == "json":
             self.df = pd.read_json(in_file)
@@ -67,7 +69,7 @@ class EmotionDataset(Dataset):
 
     def tokenize_input(self,
                        utterance: str):
-        return self.tokenizer.encode(utterance, truncation=False, add_special_tokens=True)
+        return self.tokenizer.encode(utterance, truncation=True, add_special_tokens=True, max_length=self.max_length)
 
     def __getitem__(self, idx):
         input_ids = torch.tensor(self.sources[idx])

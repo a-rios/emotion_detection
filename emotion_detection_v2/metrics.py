@@ -42,21 +42,21 @@ def get_log_scores(outputs: List[torch.tensor],
     tqdm_dict['vloss'] = round(loss.item(), 2)
 
     tqdm_dict['microF1'] = round_metric(
-                                    f1_score(preds=tqdm_dict['y_pred'], target=tqdm_dict['y_true'], average='micro', num_classes=7)
+                                    f1_score(preds=tqdm_dict['y_pred'], target=tqdm_dict['y_true'], average='micro', num_classes=len(emotions))
                             )
     tqdm_dict['macroF1'] = round_metric(
-                                    f1_score(preds=tqdm_dict['y_pred'], target=tqdm_dict['y_true'], average='macro', num_classes=7)
+                                    f1_score(preds=tqdm_dict['y_pred'], target=tqdm_dict['y_true'], average='macro', num_classes=len(emotions))
                             )
-    F1_per_class = f1_score(preds=tqdm_dict['y_pred'], target=tqdm_dict['y_true'], average='none', num_classes=7)
+    F1_per_class = f1_score(preds=tqdm_dict['y_pred'], target=tqdm_dict['y_true'], average='none', num_classes=len(emotions))
     tqdm_dict['F1_per_class'] = [round_metric(v) for v in F1_per_class ]
 
     tqdm_dict['acc_unweighted'] = round_metric(
-                                    accuracy(preds=tqdm_dict['y_pred'], target=tqdm_dict['y_true'], average='macro', num_classes=7)
+                                    accuracy(preds=tqdm_dict['y_pred'], target=tqdm_dict['y_true'], average='macro', num_classes=len(emotions))
                                     )
     tqdm_dict['acc_weighted'] =  round_metric(
-                                    accuracy(preds=tqdm_dict['y_pred'], target=tqdm_dict['y_true'], average='weighted', num_classes=7)
+                                    accuracy(preds=tqdm_dict['y_pred'], target=tqdm_dict['y_true'], average='weighted', num_classes=len(emotions))
                                     )
-    acc_per_class = accuracy(preds=tqdm_dict['y_pred'], target=tqdm_dict['y_true'], average='none', num_classes=7)
+    acc_per_class = accuracy(preds=tqdm_dict['y_pred'], target=tqdm_dict['y_true'], average='none', num_classes=len(emotions))
     tqdm_dict['acc_per_class'] = [round_metric(v) for v in acc_per_class ]
 
     y_true = tqdm_dict.pop("y_true", None)

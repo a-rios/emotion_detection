@@ -39,6 +39,7 @@ def main(args):
                                   label_name=args.label_name,
                                   utterance_name=args.utterance_name,
                                   split_name="train",
+                                  max_length=model.max_input_length,
                                   remove_unaligned=not args.keep_unaligned,
                                   no_labels=False)
     emotions = train_set.get_emotions()
@@ -49,6 +50,7 @@ def main(args):
                                   label_name=args.label_name,
                                   utterance_name=args.utterance_name,
                                   split_name="dev",
+                                  max_length=model.max_input_length,
                                   remove_unaligned=not args.keep_unaligned,
                                   emotions=emotions,
                                   no_labels=False)
@@ -59,6 +61,7 @@ def main(args):
                                     label_name=args.label_name,
                                     utterance_name=args.utterance_name,
                                     split_name="test",
+                                    max_length=model.max_input_length,
                                     remove_unaligned=not args.keep_unaligned,
                                     emotions=emotions,
                                     no_labels=False,
@@ -137,6 +140,7 @@ if __name__ == "__main__":
     parser.add_argument('--balanced_weight_warming', action="store_true", help = 'Use balanced weight warming for loss function')
     parser.add_argument("--weight_rate", type=float, default=1.0, help="Weight rate for scaling losses w.r.t. class frequency.")
     parser.add_argument("--num_classes", type=int, help="Number of emotion categories to learn.")
+    parser.add_argument("--max_input_length", type=int, default=None, help="Maximum input length, longer sequences will be truncated. If not set, will use maximum length in config of pretrained model.")
 
 
     # optimization args:

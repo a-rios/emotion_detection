@@ -19,6 +19,7 @@ def main(args):
                                   label_name=args.label_name,
                                   utterance_name=args.utterance_name,
                                   split_name="test",
+                                  max_length=model.max_input_length,
                                   emotions=model.emotions,
                                   remove_unaligned=not args.keep_unaligned,
                                   no_labels=args.no_labels,
