@@ -29,12 +29,14 @@ class EmotionPrediction(pl.LightningModule):
         self.no_labels_run = False
 
     def _load_pretrained(self):
-        self.sentence_classifier_model =  AutoModelForSequenceClassification.from_pretrained(self.args.from_pretrained, config=self.config, cache_dir=self.args.cache_dir)
+        self.sentence_classifier_model =  AutoModelForSequenceClassification.from_pretrained(self.args.from_pretrained, config=self.config, cache_dir=self.args.cache_dir, ignore_mismatched_sizes=True)
         self.tokenizer = AutoTokenizer.from_pretrained(self.args.tokenizer, use_fast=True, cache_dir=self.args.cache_dir)
         if self.args.max_input_length is not None:
             self.max_input_length = self.args.max_input_length
         else:
             self.max_input_length = self.config.max_position_embeddings if hasattr(self.config, "max_position_embeddings") else 512
+        # for gpt2, set pad_token_id in model to pad_token_id of tokenizer (== eos, gpt2 has no padding token)
+        self.config.pad_token_id = self.tokenizer.pad_token_id if not self.config.pad_token_id else self.config.pad_token_id
 
     def _set_config(self):
         self.config = AutoConfig.from_pretrained(self.args.from_pretrained, problem_type="single_label_classification", num_labels=self.args.num_classes)
@@ -198,7 +200,10 @@ class EmotionPrediction(pl.LightningModule):
         """
         returns the optimizer and scheduler
         """
-        params = self.layerwise_lr(self.args.lr, self.args.layerwise_decay)
+        if self.args.layerwise_decay > 0:
+            params = self.layerwise_lr(self.args.lr, self.args.layerwise_decay)
+        else:
+            params = self.sentence_classifier_model.parameters()
 
         self.optimizer = torch.optim.Adam(params, lr=self.args.lr)
         if self.args.scheduler == 'cosine':

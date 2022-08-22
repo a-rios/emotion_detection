@@ -75,7 +75,7 @@ def main(args):
     early_stop_callback = EarlyStopping(monitor=args.early_stopping_metric, min_delta=args.min_delta, patience=args.patience, verbose=True, mode=model.lr_mode)
     progress_bar_callback = TQDMProgressBar(refresh_rate=args.progress_bar_refresh_rate)
 
-    checkpoint_name = "checkpoint{{epoch:02d}}_{{{}".format(args.early_stopping_metric)
+    checkpoint_name = "{{epoch:02d}}_{{{}".format(args.early_stopping_metric)
     checkpoint_name += ':.3f}'
 
     checkpoint_callback = ModelCheckpoint(
@@ -136,7 +136,7 @@ if __name__ == "__main__":
     parser.add_argument("--seed", type=int, default=42, help="Seed")
     parser.add_argument("--dropout", type=float, default=0.1, help="dropout")
     parser.add_argument("--classifier_dropout", type=float, default=0.0, help="classifier_dropout")
-    parser.add_argument('--layerwise_decay', default=0.95, type=float, help='layerwise decay factor for the learning rate of the pretrained Bert models.')
+    parser.add_argument('--layerwise_decay', default=0.95, type=float, help='layerwise decay factor for the learning rate of the pretrained Bert models. If 0: do not use layerwise decay.')
     parser.add_argument('--balanced_weight_warming', action="store_true", help = 'Use balanced weight warming for loss function')
     parser.add_argument("--weight_rate", type=float, default=1.0, help="Weight rate for scaling losses w.r.t. class frequency.")
     parser.add_argument("--num_classes", type=int, help="Number of emotion categories to learn.")

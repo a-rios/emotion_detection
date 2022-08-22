@@ -9,13 +9,13 @@ packages = [p for p in find_packages() if "third_party" not in p]
 print(packages)
 
 setup(
-  name='emotion_detection_v2',
+  name='emotion_detection',
   packages=packages,
   version='0.0.1',
   description='Emotion detection EASIER WP7',
   author='Annette Rios',
   author_email='rios@cl.uzh.ch',
-  url='https://github.com/a-rios/emotion_detection_v2.git',
+  url='https://github.com/a-rios/emotion_detection.git',
   keywords=['EASIER', 'Emotion Detection', 'Emotion Recognition'],
   install_requires=['torch', 'pandas', 'transformers', 'numpy'],
   long_description=long_description,
