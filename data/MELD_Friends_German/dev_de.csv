@@ -1,0 +1,1110 @@
+sentence_id,dialogue_id,utterance_de,speaker,label
+0,0,"Es tut mir so leid, sein Stil hat sich sehr verschlechtert.",Phoebe,sadness
+1,0,"Was?",Monica,surprise
+0,1,"lösen dort unsere Konten auf und drehen ihnen dadurch den Saft ab.",Ross,neutral
+1,1,"Das ist einfach genial!",Chandler,joy
+2,1,"Ja, aber dann sind wir beide doch überhaupt keine 'Bankfreunde' mehr.",Joey,sadness
+3,1,"NOT FOUND",Chandler,neutral
+4,1,"GRUPPE: Hi.",Phoebe,neutral
+5,1,"GRUPPE: Hi.",All,joy
+6,1,"Ich habe euch doch von diesem knackigen Kunden erzählt.",Phoebe,neutral
+7,1,"Und wohin?",Rachel,surprise
+8,1,"Na, in den Hintern.",Phoebe,neutral
+9,1,"NOT FOUND",Ross,neutral
+10,1,"Ich weiß ja, dass es nicht richtig ist, aber in dem Moment",Phoebe,surprise
+11,1,"möchte ich meinen Eid über Bord werfen und einen neuen schmutzigen ablegen.",Phoebe,anger
+12,1,"Du musst versuchen, dich abzulenken, wenn er das nächste Mal vor dir liegt.",Monica,neutral
+13,1,"wenn ich irgendwas Aufregendes tun möchte,",Joey,joy
+14,1,"- Danke, Joey. - Nein, ich danke dir.",Chandler,neutral
+15,1,"- Danke, Joey. - Nein, ich danke dir.",Joey,neutral
+0,2,"- Hey, Estelle, hör zu... - Wie nett, wie nett, wie nett.",Joey,neutral
+1,2,"Joey Tribbiani.",Estelle,surprise
+2,2,"Ich habe dich nie verlassen. Du warst immer meine Agentin.",Joey,surprise
+3,2,"- Wirklich? - Ja.",Estelle,surprise
+4,2,"NOT FOUND",Joey,joy
+5,2,"Na, dann will ich natürlich überhaupt nichts gesagt haben.",Estelle,neutral
+0,3,"- Habt ihr heute Abend Zeit? - Ja!",Gary,neutral
+1,3,"Ja.",Ross,joy
+2,3,"Ist das dein Ernst? Abends ist es dunkel.",Chandler,surprise
+0,4,"Ja, bitte? Kann ich Ihnen helfen?",Ross,neutral
+1,4,"Wir wollen uns nur umsehen.",Guy,neutral
+2,4,"Natürlich, Sie sind wissenschaftlich tätig.",Ross,surprise
+3,4,"Wonach suchen Sie eigentlich?",Ross,neutral
+4,4,"zum Thema <i>Smilodon californicus.</i>",Ross,neutral
+5,4,"Vielleicht...",Guy,neutral
+6,4,"NOT FOUND",Ross,anger
+7,4,"Eigentlich finde ich Merriams Ansichten viel zu fortschrittsorientiert.",Woman,neutral
+8,4,"Ich finde auch, dass er zu sehr auf Fortschritt bedacht ist.",Ross,neutral
+9,4,"Verzeihen Sie die Frage, wer sind Sie?",Woman,surprise
+10,4,"Ich bin Dozent und heiße Ross Geller.",Ross,neutral
+11,4,"Ross Geller? Woher kenne ich denn nur diesen Namen?",Woman,surprise
+12,4,"Das glaube ich nicht! Sie haben wirklich mein Buch gelesen?",Ross,surprise
+13,4,"NOT FOUND",Woman,surprise
+14,4,"Tja, ich habe ja auch die vierte Klasse übersprungen.",Ross,neutral
+0,5,"Du hattest kein Recht, mir zu sagen, dass du in mich verliebt bist.",Ross,anger
+1,5,"- Was? - Ich hab mich prima mit Julie verstanden,",Rachel,surprise
+2,5,"- Was? - Ich hab mich prima mit Julie verstanden,",Ross,anger
+3,5,"Glaubst du, es ist leicht für mich, dich mit Julie zu sehen?",Rachel,anger
+4,5,"NOT FOUND",Ross,anger
+5,5,"NOT FOUND",Ross,anger
+6,5,"Ich habe eine Frau, mit der ich sehr glücklich bin. Unser Boot ist abgefahren!",Ross,anger
+7,5,"Ich habe eine Frau, mit der ich sehr glücklich bin. Unser Boot ist abgefahren!",Ross,anger
+8,5,"Dann nur weiter so, und jetzt verschwinde.",Rachel,anger
+9,5,"- Gut! - Gut!",Ross,anger
+10,5,"Und vergiss dein bescheuertes Boot nicht!",Rachel,anger
+11,5,"- Gut! - Gut!",Ross,anger
+12,5,"- Gut! - Gut!",Rachel,anger
+0,6,"Es ist so romantisch, wenn 2 Leute in die Flitterwochen fahren.",Phoebe,joy
+1,6,"Monica und Chandler sind verheiratet. Ross und Rachel kriegen ein Baby.",Joey,neutral
+2,6,"- Wir beide sollten auch was machen. - Alles zu seiner Zeit. Alles zu seiner Zeit.",Phoebe,neutral
+3,6,"- Wir beide sollten auch was machen. - Alles zu seiner Zeit. Alles zu seiner Zeit.",Phoebe,neutral
+4,6,"NOT FOUND",Phoebe,surprise
+5,6,"Oh, Mist, ich habe meine Gitarre in ihrer Wohnung vergessen. Lässt du mich rein?",Phoebe,sadness
+6,6,"NOT FOUND",Phoebe,neutral
+7,6,"Nein, Ich hab keinen Schlüssel. Sie haben gesagt, dass du ihn bekommst.",Joey,neutral
+8,6,"Was? Sie sagten mir, dass du ihn bekommst.",Phoebe,surprise
+9,6,"Wieso bekommen wir keine Schlüssel?",Joey,surprise
+0,7,"Wir haben ja tolle Sachen bekommen.",Ross,joy
+1,7,"Allerdings, aber meine Mom hat das allerschönste Geschenk für uns.",Rachel,joy
+2,7,"Sag bloß, sie hat was von Playmobil?",Ross,neutral
+3,7,"Nein. Sie zieht in unsere Wohnung, und zwar für 8 Wochen.",Rachel,neutral
+4,7,"Was?",Ross,surprise
+5,7,"Ja, sie wird uns helfen, was das Baby betrifft. Juchu.",Rachel,joy
+6,7,"Das kann doch nicht dein Ernst sein.",Ross,surprise
+7,7,"Sie ist eine nette Frau. Aber auf keinen Fall können wir sie 8 Wochen ertragen.",Ross,anger
+8,7,"- Das macht uns verrückt. - Hi, Ross.",Ross,disgust
+9,7,"Hi, Mitbewohnerin.",Mrs. Green,joy
+10,7,"Hi, Mitbewohnerin.",Ross,joy
+0,8,"Willst du den Film machen?",Monica,neutral
+1,8,"Ich weiß noch nicht.",Joey,neutral
+2,8,"Das sagst du auch bei Pornos.",Joey,neutral
+3,8,"Ich meine, es ist ja kein Porno. Es ist ein seriöser, normaler Film.",Joey,neutral
+4,8,"Und für die Story ist es wichtig, dass ich nackt auftrete.",Joey,neutral
+5,8,"Das sagst du auch bei Pornos.",Monica,neutral
+6,8,"Ich sollte mich einfach nicht wieder melden.",Joey,neutral
+7,8,"Nein. Viele Schauspieler sind doch schon nackt aufgetreten.",Monica,joy
+8,8,"NOT FOUND",Joey,neutral
+9,8,"Das ist richtig. Und ich wäre nur in einer Szene völlig nackt.",Joey,neutral
+10,8,"NOT FOUND",Joey,neutral
+11,8,"Ich spiele einen katholischen Jungen, der sich in eine Jüdin verknallt.",Joey,neutral
+12,8,"Wir laufen fort und geraten in einen Sturm.",Joey,neutral
+13,8,"Wir finden eine Scheune. Wir ziehen uns aus und halten uns fest.",Joey,neutral
+14,8,"Eine sehr liebevolle Szene, oder?",Joey,joy
+0,9,"JOEY: Was ist los?",Joey,neutral
+1,9,"Monica und ich hatten einen blöden Streit.",Chandler,sadness
+2,9,"Aber ihr wollt doch noch zusammenziehen? Heute erscheint meine Anzeige.",Joey,neutral
+3,9,"'Mitbewohnerin gesucht, die hübsch ist und nicht raucht.'",Chandler,joy
+4,9,"- Sehr gut. - Ja?",Joey,neutral
+5,9,"Ich dachte, wäre doch nett, jetzt mal eine Mitbewohnerin zu haben.",Joey,neutral
+6,9,"Jemand, der mir was beibringen kann, der ein völlig anderer Mensch ist.",Joey,neutral
+7,9,"Und was wäre reizvoller: Ein Kerl, der so ungefähr 19 ist",Joey,neutral
+0,10,"Und jetzt?",Ross,neutral
+1,10,"Er reagiert nie auf meine Anrufe, also überraschen wir ihn.",Gary,neutral
+2,10,"Er reagiert nie auf meine Anrufe, also überraschen wir ihn.",Chandler,fear
+3,10,"Du willst dem Täter auf die Füße treten, bevor er seinen Anwalt anruft?",Joey,joy
+4,10,"Er ist ein Zeuge. So spricht keiner bei uns.",Gary,anger
+5,10,"Ja, so wie du spricht kein Mensch.",Ross,anger
+6,10,"NOT FOUND",Joey,anger
+7,10,"- Bist du gerade Polizist geworden? - Ich bin mehr Polizist als ihr.",Ross,anger
+8,10,"Warum denn das?",Chandler,neutral
+9,10,"Ich bin Garys Partner.",Ross,neutral
+0,11,"Hört sich wohl so an.",Phoebe,neutral
+1,11,"- Bitte sehr. - Danke. Wo ist der andere?",Rachel,neutral
+2,11,"- Bitte sehr. - Danke. Wo ist der andere?",Phoebe,neutral
+3,11,"Was? Du willst beide? Das kann doch nicht sein.",Rachel,surprise
+4,11,"Rachel Karen Green, wo ist der andere?",Phoebe,anger
+5,11,"Aber flipp nicht aus. Ich habe ihn verloren.",Rachel,fear
+6,11,"Er ist in der Wohnung, aber ich kann dir nicht sagen, wo.",Rachel,neutral
+7,11,"Wie soll ich ihr das erklären? Sie will sie heute tragen.",Phoebe,fear
+8,11,"- Sag ihr, sie soll ihre tragen. - Das sind ihre Ohrringe.",Rachel,anger
+9,11,"NOT FOUND",Phoebe,neutral
+10,11,"Du hast mir ihre Ohrringe geliehen? Ich darf mir von ihr nichts leihen!",Rachel,anger
+11,11,"Das darf doch nicht wahr sein!",Phoebe,neutral
+12,11,"- Wieso nicht? - Weil ich ihre Sachen verliere!",Rachel,anger
+0,12,"- Phoebe, hast du kurz Zeit? - Ja.",Ross,neutral
+1,12,"NOT FOUND",Phoebe,neutral
+2,12,"- Was ist? - Chandler ist wieder weg.",Phoebe,neutral
+3,12,"- Was ist? - Chandler ist wieder weg.",Ross,surprise
+4,12,"Wieso spielst du Verstecken, wenn Fluchtgefahr besteht?",Phoebe,sadness
+0,13,"Können Sie jetzt wieder pressen?",Dr. Harad,neutral
+1,13,"Ich hatte schon eins, jetzt habe ich es satt!",Phoebe,anger
+2,13,"Keine Sorge, Schwesterchen, jetzt nicht schlapp machen!",Frank,joy
+3,13,"Ja!",Frank,joy
+4,13,"Die kleine Leslie ist da! Wir haben das zweite Kind!",Frank,joy
+5,13,"NOT FOUND",Frank,surprise
+6,13,"Oh, mein Gott, ich kann's nicht fassen, jetzt habe ich schon 2 Kinder!",Frank,surprise
+7,13,"Ist das nicht irgendwie erschreckend?",Frank,surprise
+8,13,"Komm, kleiner Chandler, jetzt wird es Zeit, sich mal blicken zu lassen!",Frank,joy
+9,13,"Da kommt er! Da haben wir ihn!",Dr. Harad,joy
+10,13,"Hey, wo ist denn sein Ding?",Frank,surprise
+11,13,"Chandler ist ein Mädchen!",Frank,surprise
+12,13,"Oh, Gott! Kindergarten-Rückblende.",Chandler,surprise
+13,13,"Auf dem Ultraschall ist das nicht immer so leicht zu erkennen.",Frank,surprise
+14,13,"Aber Chandler ist ein Mädchen!",Frank,surprise
+15,13,"Aber Chandler ist ein Mädchen!",Frank,surprise
+16,13,"Sag's doch noch mal, ja?",Chandler,joy
+17,13,"- Ist etwa irgendwas? - Nein, nein,",Alice,neutral
+18,13,"es sind insgesamt 30 Finger und 30 Zehen.",Frank,joy
+19,13,"Wir haben unsere Babys!",Alice,surprise
+20,13,"NOT FOUND",Frank,joy
+21,13,"Wir haben unsere Babys!",Alice,joy
+0,14,"- Hey, Toby. - Hey, Bobby.",Bob,joy
+1,14,"- Hey, Toby. - Hey, Bobby.",Chandler,neutral
+2,14,"Sie arbeiten hier oben. Ich suche das Büro von Chandler Bing.",Bob,neutral
+3,14,"Ja, das ist gleich da vorn. Sehen Sie, da ist es.",Chandler,neutral
+4,14,"Ich will reden mit diesem Bastard und wissen, wo sein Problem liegt.",Bob,anger
+5,14,"Ich bin schuld, dass Sie den Job nicht bekommen konnten.",Chandler,sadness
+6,14,"- Toby, nicht doch. - Bob.",Bob,sadness
+7,14,"NOT FOUND",Chandler,sadness
+8,14,"Was Sie jetzt auch sagen, es wird mich noch mehr gegen ihn aufbringen.",Bob,anger
+0,15,"Joey, dieses Kinderbett ist so niedlich.",Rachel,joy
+1,15,"Ja, und so was stellen andere Leute auf die Straße.",Joey,joy
+2,15,"- Es ist so gut erhalten. - Ja.",Rachel,surprise
+3,15,"Ist nicht wahr?",Joey,neutral
+4,15,"Huch, was krabbelt denn da unter der Decke?",Rachel,surprise
+5,15,"- Igitt. - Ruhig.",Joey,neutral
+6,15,"- Keine Ahnung. - Es bewegt sich.",Rachel,fear
+7,15,"NOT FOUND",Joey,disgust
+8,15,"- Ah, das hat einen Schwanz. Raus damit! - Oh, ah! Ok!",Rachel,fear
+9,15,"- Igitt. - Ruhig.",Joey,fear
+0,16,"Ich war bei Kyle, weil ich noch ein paar Sachen abholen wollte,",Whitney,neutral
+1,16,"dass wir nach wie vor Gefühle füreinander haben.",Kyle,sadness
+2,16,"Nun sag es, Kyle!",Ross,surprise
+3,16,"Wir wollen einen neuen Versuch starten.",Kyle,joy
+4,16,"Was ist mit ihrem Gejammer und der dauernden Kritik?",Phoebe,anger
+5,16,"Ich arbeite daran, ok?",Whitney,neutral
+6,16,"Du bist ja auch ein Mensch, der sich ändert.",Phoebe,anger
+7,16,"Weißt du, dass er summt, wenn er pinkelt?",Ross,anger
+8,16,"Ich arbeite daran, ok?",Whitney,neutral
+9,16,"- Ja, das weiß ich. - Und er verfehlt das Becken dabei.",Ross,disgust
+10,16,"Es tut uns wirklich leid.",Whitney,sadness
+11,16,"Ist ok. Wir brauchen euch nicht. Ich bin schon drüber hinweg.",Ross,anger
+12,16,"NOT FOUND",Phoebe,anger
+13,16,"Ja, wir gehen jetzt.",Kyle,neutral
+14,16,"Phoebe, du hattest recht mit dem, was sie betrifft.",Ross,sadness
+15,16,"Er summt übrigens auch, wenn er andere Sachen tut.",Phoebe,neutral
+16,16,"- Ohne die beiden sind wir besser dran. - Ha.",Ross,anger
+17,16,"darf er nicht in deinen Klub der jämmerlichen Männer.",Phoebe,anger
+18,16,"- Der geschiedenen Männer. - Ist doch egal wie der heißt.",Ross,sadness
+0,17,"Wann kommt denn endlich mein Diener mit dem Porsche wieder zurück?",Joey,anger
+1,17,"Wird schwierig, wenn Sie den Schlüssel haben.",Passerby,anger
+2,17,"NOT FOUND",Rachel,anger
+3,17,"- Das ist nur deine Schuld. - Wer hat der Richterin gedroht?",Ross,anger
+4,17,"Du hast dem Protokollführer das Papier brutal aus der Maschine gerissen!",Rachel,anger
+0,18,"- Phoebe? - Ja?",Monica,neutral
+1,18,"- Phoebe? - Ja?",Phoebe,neutral
+2,18,"- Weißt du, wo Chandler ist? - Nein. Wieso?",Monica,neutral
+3,18,"- Phoebe? - Ja?",Phoebe,neutral
+4,18,"Die Frau vom Museum hat angerufen, dass es aufgrund einer Stornierung",Monica,fear
+5,18,"NOT FOUND",Monica,fear
+6,18,"Oh, Gott. Wie schlimm ist es?",Monica,fear
+7,18,"Bei anderen wär's ganz schön schlimm, doch bei Chandler? Du großer Gott!",Phoebe,fear
+8,18,"Er ist so ausgerastet und jetzt weiß ich nicht, wo er ist!",Monica,fear
+9,18,"NOT FOUND",Phoebe,neutral
+10,18,"- Was willst du tun? - Jedenfalls nie wieder auf dich hören!",Monica,anger
+11,18,"(ÄFFT NACH): 'Lass dich doch schon mal vormerken.'",Monica,neutral
+12,18,"- Das hat doch aber Rachel gesagt. - Aber Rachel ist nicht da!",Phoebe,surprise
+13,18,"- Das hat doch aber Rachel gesagt. - Aber Rachel ist nicht da!",Monica,anger
+0,19,"ROSS: So, los jetzt!",Ross,neutral
+1,19,"NOT FOUND",Ross,anger
+2,19,"Verdammt noch mal, das ist alles nur deine Schuld!",Ross,anger
+3,19,"Ich hab wirklich gedacht, dass das der schönste Tag meines Lebens wird.",Ross,anger
+4,19,"Denn mein Sohn wird heute geboren, und statt dabei zu sein,",Ross,anger
+5,19,"Dieser Tag ist für mich genau so wichtig wie für dich!",Susan,anger
+6,19,"NOT FOUND",Ross,anger
+7,19,"Nein, für niemanden ist dieser Tag so wichtig wie für mich, verstehst du?",Ross,anger
+8,19,"Und weißt du, was das Irrste daran ist?",Ross,neutral
+9,19,"Wenn das Kind da ist, kannst du mit ihm heim gehen, welche Rolle spiel ich?",Ross,anger
+10,19,"NOT FOUND",Ross,sadness
+11,19,"Hör mal, du bist immerhin der Vater.",Susan,neutral
+12,19,"Du wirst von allen anerkannt, nicht wie ich.",Susan,neutral
+13,19,"NOT FOUND",Susan,anger
+14,19,"Doch einen Tag für lesbische Geliebte gibt es nicht.",Susan,sadness
+15,19,"Das ist nicht wahr, jeder Tag ist doch für dich ein Lesbentag.",Ross,neutral
+16,19,"Das ist einfach klasse.",Phoebe,joy
+17,19,"Kannst du uns das mal erklären?",Ross,neutral
+18,19,"bald darauf war meine Mutter tot. Mein Stiefvater musste ins Gefängnis.",Phoebe,sadness
+19,19,"Und dein Kind, das heute zur Welt kommt, hat gleich 3 Menschen,",Phoebe,joy
+20,19,"in seinem Dasein die wichtigste Rolle zu spielen.",Phoebe,sadness
+21,19,"Es ist wohl das glücklichste Baby der Welt.",Phoebe,joy
+22,19,"Aber streitet euch ruhig weiter.",Phoebe,sadness
+0,20,"Ok. 'Also, ein ganz normales New Yorker Appartement.",Joey,neutral
+1,20,"- 'Hi. Wie geht's dir denn, Kelly?' - 'Es geht mir sehr gut, danke.",Monica,neutral
+2,20,"Tiffany, du riechst aber wirklich ganz toll.'",Rachel,joy
+3,20,"Komm doch ein bisschen näher ran, dann kannst du es besser riechen.'",Monica,neutral
+4,20,"- Ach, Joey, du bist krank. - Das ist ekelerregend.",Rachel,disgust
+5,20,"NOT FOUND",Monica,disgust
+6,20,"Das lese ich auf keinen Fall weiter.",Rachel,disgust
+7,20,"Wartet doch mal. Ihr verpasst ja den gutaussehenden Mann!",Joey,surprise
+0,21,"Gut, ok, ich sehe es ja ein, Mr. Peanut hat nun mal die besten Klamotten.",Joey,neutral
+1,21,"Immer trägt er ein Monokel und einen Zylinder.",Joey,neutral
+2,21,"Er ist schwul.",Phoebe,neutral
+3,21,"Das will ich jetzt genau wissen. Outest du gerade Mr. Peanut?",Ross,neutral
+4,21,"Liebe Freunde, das ist Danielle. Danielle, das sind meine Freunde.",Chandler,neutral
+5,21,"GRUPPE: Hi.",All,neutral
+6,21,"Was machst du denn hier?",Chandler,surprise
+0,22,"NOT FOUND",Chandler,neutral
+1,22,"NOT FOUND",Chandler,neutral
+2,22,"NOT FOUND",Chandler,neutral
+3,22,"Weil sie dich verlassen hat? Weil sie Frauen mag? Und dich darum verließ?",Chandler,surprise
+4,22,"Weil sie dich verlassen hat? Weil sie Frauen mag? Und dich darum verließ?",Chandler,neutral
+5,22,"Weil sie dich verlassen hat? Weil sie Frauen mag? Und dich darum verließ?",Chandler,neutral
+6,22,"Da liegt ein Mann in der 12. Etage im Koma, der hat dich nicht gehört.",Ross,anger
+7,22,"Was denn?",Chandler,neutral
+8,22,"Mein erstes Mal mit Carol war...",Ross,neutral
+9,22,"Was?",Joey,neutral
+10,22,"Es war mein erstes",Ross,neutral
+11,22,"Mit Carol?",Joey,surprise
+12,22,"Was? Du hast dein ganzes Leben nur mit einer...",Chandler,surprise
+13,22,"Oh, Mann. Eishockey war ein großer Fehler.",Joey,surprise
+0,23,"Wieso ist denn niemand da?",Ross,neutral
+1,23,"Oh, Chris hat mir die Schlüssel gegeben, damit ich abschließe. Was hast du?",Phoebe,sadness
+2,23,"Ich glaube, meine Ehe ist irgendwie kaputt.",Ross,sadness
+3,23,"Oh nein! Warum denn?",Phoebe,surprise
+4,23,"Weil Carol eine Lesbe ist.",Ross,sadness
+5,23,"Ach, du arme Maus!",Phoebe,surprise
+6,23,"NOT FOUND",Ross,disgust
+7,23,"Wenn ich mit Carol ausgegangen bin und eine schöne Frau vorbeigekommen ist,",Ross,sadness
+8,23,"Ah. Ob diese Susan ihre Geliebte ist?",Phoebe,neutral
+9,23,"Ja, jetzt glaube ich das schon!",Ross,surprise
+10,23,"Tut mir leid.",Phoebe,sadness
+11,23,"7 lange Jahre!",Ross,sadness
+12,23,"Sie ist die einzige Frau, die mich je geliebt hat.",Ross,sadness
+13,23,"Ach, Ross. Das tut mir so leid.",Phoebe,sadness
+0,24,"- Dann tue ich es. - JOEY: Das wirst du sein lassen.",Cookie,neutral
+1,24,"- Dann tue ich es. - JOEY: Das wirst du sein lassen.",Joey,neutral
+2,24,"Er weiß ja, dass er was verbockt hat, und ich glaube, dass es ihm leid tut.",Joey,sadness
+3,24,"Du musst dich bei Mary Angela entschuldigen.",Joey,neutral
+4,24,"- Ok. Das ist doch klar. - In Ordnung.",Chandler,joy
+5,24,"- Ok. Das ist doch klar. - In Ordnung.",Joey,neutral
+6,24,"NOT FOUND",Chandler,neutral
+7,24,"- Cookie, jetzt hau ihm eine aufs Maul! - Was?",Joey,anger
+8,24,"NOT FOUND",Chandler,surprise
+0,25,"- Das war's, ich hör auf. - Wieso denn? Ich sag doch gar nichts!",Phoebe,anger
+1,25,"- Das war's, ich hör auf. - Wieso denn? Ich sag doch gar nichts!",Monica,surprise
+2,25,"Aber das ist nicht das Gesicht eines Menschen, der einem anderen vertraut.",Phoebe,anger
+3,25,"Aber das ist nicht das Gesicht eines Menschen, der einem anderen vertraut.",Phoebe,anger
+4,25,"Aber es ist kürzer, als ich es mir vorgestellt hab.",Monica,sadness
+5,25,"Aber beruhige dich, ja? Ich weiß, was ich zu tun habe.",Phoebe,anger
+0,26,"- Julie. - Was?",Monica,neutral
+1,26,"- Julie. - Was?",Rachel,surprise
+2,26,"Jody.",Monica,surprise
+3,26,"Du warst mit Julie essen?",Rachel,neutral
+4,26,"Anfangs wollte ich nur ein bisschen nett zu dem Mädchen sein,",Monica,neutral
+5,26,"Und bevor ich mich versah, waren wir beide",Monica,neutral
+6,26,"Du meine Güte.",Rachel,surprise
+7,26,"Und es hat mir wirklich gar nichts bedeutet.",Monica,sadness
+8,26,"- Klar. - Ehrlich!",Rachel,anger
+9,26,"Rachel, ich hab die ganze Zeit nur an dich gedacht.",Monica,sadness
+10,26,"- Klar. - Ehrlich!",Monica,sadness
+11,26,"Es tut mir wirklich leid. Ich wollte nicht, dass du es erfährst.",Monica,sadness
+12,26,"Ach, red keinen Blödsinn! Du wolltest erwischt werden!",Rachel,anger
+13,26,"Das ist nicht wahr!",Monica,anger
+14,26,"Und die Rechnung hast du zufällig in die Tasche gesteckt?",Rachel,anger
+15,26,"Hast du je daran gedacht, dass ich tatsächlich so dumm sein könnte?",Monica,anger
+16,26,"Ok, Monica, ich hätte da auch eine Frage an dich.",Rachel,sadness
+0,27,"- Wer ist der Vater? - Ja.",Monica,surprise
+1,27,"Das kann ich nicht sagen.",Phoebe,neutral
+2,27,"- Wieso? - Warum denn nicht?",Monica,surprise
+3,27,"- Wieso? - Warum denn nicht?",Chandler,sadness
+4,27,"Ich kann es nicht sagen, weil er berühmt ist.",Phoebe,neutral
+5,27,"Oh, mein Gott, wer ist es?",Rachel,surprise
+6,27,"Phoebe, du musst es uns sagen.",Monica,anger
+7,27,"James Brolin ist der Vater meines Babys.",Phoebe,neutral
+8,27,"Das heißt, Barbra Streisands Ehemann ist der Vater?",Chandler,surprise
+9,27,"Was? Von der Ehe hat er nie was gesagt.",Phoebe,surprise
+0,28,"In diesem Leben haben wir gemeint.",Ross,neutral
+1,28,"Nein, dann ist Chandlers Geschichte schlimmer.",Phoebe,sadness
+2,28,"Cool, wenn man sich an so was erinnern kann.",Joey,joy
+3,28,"Natürlich nicht, du bist ja auch nagelneu, mein Süßer.",Phoebe,neutral
+4,28,"Ich kenne Monicas schlimmstes Thanksgiving.",Rachel,neutral
+5,28,"Diese Geschichte erzählen wir nicht.",Monica,sadness
+6,28,"Ich weiß schon!",All,sadness
+7,28,"Das war, als Joeys Kopf in Monicas Truthahn gesteckt hat!",Phoebe,joy
+8,28,"Das war, als Joeys Kopf in Monicas Truthahn gesteckt hat!",Rachel,surprise
+9,28,"- Es ist nicht so, wie ihr denkt. - Es hört sich jedoch ganz danach an.",Joey,neutral
+10,28,"NOT FOUND",Chandler,neutral
+0,29,"Wendy. Wendy. Wendy.",Monica,anger
+1,29,"Wer war das?",Rachel,neutral
+2,29,"Jetzt hab ich keine Kellnerin.",Monica,sadness
+3,29,"Das ist aber schlecht.",Rachel,sadness
+4,29,"- $10 die Stunde. - Nein.",Monica,neutral
+5,29,"NOT FOUND",Rachel,neutral
+6,29,"$12 die Stunde.",Monica,neutral
+7,29,"Monica, ich würd dir ja den Gefallen tun, aber ich wollte spazieren gehen.",Rachel,neutral
+8,29,"Als du damals vor deiner Hochzeit weggelaufen bist, war ich für dich da.",Monica,anger
+9,29,"Ich hab dir ein Dach über dem Kopf geboten, wenn dir das nichts bedeutet...",Monica,anger
+10,29,"Gut.",Rachel,joy
+0,30,"'In 3 Minuten wird der Reaktor explodieren.",Joey,fear
+1,30,"'Du musst hier raus! Los, rette dein Leben!'",Phoebe,fear
+2,30,"'Ich werde dich nicht verlassen.'",Joey,fear
+3,30,"'Mach dir keine Sorgen um mich. Ich bin ein Roboter, eine Maschine!'",Phoebe,sadness
+4,30,"- 'Das ist nicht wahr, nicht für mich.' - Nicht zu fassen.",Joey,anger
+5,30,"NOT FOUND",Phoebe,surprise
+6,30,"NOT FOUND",Joey,neutral
+7,30,"NOT FOUND",Phoebe,neutral
+8,30,"- Gut, dann wollen wir... - Ich habe wirklich alles gegeben.",Joey,joy
+9,30,"NOT FOUND",Phoebe,joy
+10,30,"Ich war doch auch ganz gut.",Joey,joy
+11,30,"Du warst schon ok. Nur eben nicht wie ich.",Phoebe,neutral
+12,30,"Sonst bin ich noch überprobt. Ha, ha, ha.",Joey,neutral
+13,30,"NOT FOUND",Phoebe,anger
+14,30,"Bitte. Dann tu ich's eben ohne dich.",Phoebe,anger
+15,30,"Ich brauche weder dich noch sonst jemanden!",Phoebe,anger
+16,30,"Ich schaffe das nämlich auch allein!",Phoebe,anger
+17,30,"Du wirst es schon sehen! Ihr werdet es alle sehen!",Phoebe,anger
+18,30,"NOT FOUND",Phoebe,neutral
+0,31,"Unglaublich, dass Ross nicht mehr unter uns ist. Das ist so traurig.",Kori,sadness
+1,31,"Ich wusste nicht, dass ihr euch so nahe standet.",Chandler,surprise
+2,31,"Oh nein. Aber wir hatten ein Fach zusammen. Er war ein toller Kerl.",Kori,sadness
+3,31,"- Ich habe ihn nie vergessen. - Das würde ihm viel bedeuten.",Chandler,neutral
+4,31,"drückt er gerade sein Ohr dagegen und hört aufmerksam zu.",Chandler,neutral
+5,31,"Ich wollte ihn oft anrufen und fragen, ob er mit mir ausgeht.",Kori,sadness
+6,31,"Nein, im Gegenteil!",Ross,joy
+7,31,"Ich lebe noch!",Ross,joy
+8,31,"Kori, ich weiß, dass dich das jetzt überrascht.",Ross,joy
+9,31,"Lange Geschichte. Aber deine Worte machten mich wirklich glücklich.",Ross,joy
+10,31,"als wenn dieses Zimmer voller Menschen wäre.",Ross,joy
+11,31,"Du kranker Irrer! Wer tut denn so was?",Kori,anger
+12,31,"Kori Weston war in mich verknallt!",Ross,joy
+0,32,"- Ich werde Sie untersuchen. - In Ordnung.",Dr. Long,neutral
+1,32,"Ach ja, es geht schon.",Rachel,neutral
+2,32,"- Es sollte vor 8 Tagen da sein? - RACHEL: Ja.",Dr. Long,surprise
+3,32,"NOT FOUND",Rachel,neutral
+4,32,"Du kannst ja nett sein.",Dr. Long,neutral
+5,32,"Ach ja, es geht schon.",Rachel,neutral
+6,32,"NOT FOUND",Dr. Long,neutral
+7,32,"Aber es wird bald da sein. Ein bisschen müssen Sie sich noch gedulden.",Dr. Long,neutral
+8,32,"- Ich habe Vorschläge zur Erleichterung. - Wir sind bereit!",Dr. Long,neutral
+9,32,"NOT FOUND",Ross,anger
+10,32,"Aber nach meiner Erfahrung sind einige davon sehr effektiv.",Dr. Long,neutral
+11,32,"Sehr gut. Das werden wir tun.",Rachel,neutral
+12,32,"- Wir werden alles versuchen. - Dann sollten Sie Kräutertee trinken.",Dr. Long,neutral
+13,32,"Ist gut.",Rachel,neutral
+0,33,"Sie dachte, sie müsse nach Tulsa ziehen.",Chandler,sadness
+1,33,"Sie dachte, sie müsse nach Tulsa ziehen.",Monica,neutral
+0,34,"Du kannst ruhig anfangen.",Carol,neutral
+1,34,"Na, gut, los geht's.",Ross,neutral
+2,34,"Also, in welche Richtung muss ich sprechen? Also, äh...",Ross,neutral
+3,34,"Nun, es gäbe da einen Weg mit einem gewissen akustischen Vorteil, aber...",Ross,neutral
+4,34,"Sprich zu dieser Beule.",Carol,neutral
+5,34,"Ok. Ok.",Ross,neutral
+6,34,"Nein, ich, ich kann das nicht.",Ross,fear
+7,34,"Ich find's irgendwie doof. Ich komme mir dämlich dabei vor.",Ross,disgust
+8,34,"Ich find's irgendwie doof. Ich komme mir dämlich dabei vor.",Ross,sadness
+9,34,"Das macht nichts. Du brauchst es nicht zu tun, nur weil Susan es tut.",Carol,neutral
+10,34,"Hallo, Baby!",Ross,joy
+0,35,"Oh. Hallo, hier ist Mark.",Mark,neutral
+0,36,"Sei vorsichtig. Du solltest ins Krankenhaus fahren, ok?",Ross,fear
+1,36,"Ist gut. Ja, das mache ich.",Rachel,neutral
+2,36,"NOT FOUND",Ross,neutral
+3,36,"Ist gut. Ja, das mache ich.",Rachel,neutral
+4,36,"Ich rufe dir ein Taxi, das dich dann sofort ins Krankenhaus bringt.",Ross,neutral
+5,36,"Warte mal. Würdest du mitfahren?",Rachel,sadness
+6,36,"Äh, ich muss nur mal telefonieren.",Ross,surprise
+7,36,"Au!",Rachel,neutral
+8,36,"Au!",Ross,neutral
+9,36,"NOT FOUND",Rachel,surprise
+10,36,"Was ist denn nun passiert?",Ross,fear
+11,36,"Ich will einfach nicht so gern in dieser Aufmachung ins Krankenhaus.",Rachel,disgust
+0,37,"FERNSEHSPRECHER: Pete Becker kreist seinen Gegner ein.",TV Announcer,neutral
+1,37,"Da! Bruiser greift an!",Chandler,fear
+2,37,"Das ertrage ich nicht!",Rachel,fear
+3,37,"Seht euch das an! Pete gewinnt!",Joey,surprise
+4,37,"- Wirklich? - Ach, Unsinn!",Monica,surprise
+5,37,"ALLE: Oh! Oh!",Joey,fear
+6,37,"FERNSEHSPRECHER: Bruiser zielt auf die sonst sehr begehrte Stelle seines Gegners!",TV Announcer,fear
+7,37,"ALLE: Oh! Oh!",All,disgust
+8,37,"Wenn das so weitergeht, wird diese Stelle bald nicht mehr begehrt sein!",Phoebe,surprise
+9,37,"ROSS: Schon merkwürdig.",Ross,surprise
+10,37,"Richard wollte keine Kinder haben, und Pete wird wohl nicht können.",Ross,neutral
+0,38,"Musst du so angeben, während wir vor dem Nichts stehen?",Joey,anger
+0,39,"Sollten wir Rachel sagen, dass gleich nebenan noch ein Zimmer frei ist?",Chandler,neutral
+1,39,"Könnten wir tun. Oder wir nutzen es für uns.",Monica,joy
+2,39,"Darüber muss ich nachdenken, während ich mir meine Hose ausziehe!",Chandler,joy
+0,40,"- Ich fand, ich war eine blöde Gans. - Ganz deiner Meinung.",Rachel,surprise
+1,40,"- Er fragte, ob du mit ihm ausgehst. - Ich werd mich doch nicht übergeben?",Joey,neutral
+2,40,"- Ich fand, ich war eine blöde Gans. - Ganz deiner Meinung.",Rachel,disgust
+3,40,"- Was hast du gesagt? - Ich sagte Nein.",Joey,neutral
+4,40,"Was?",Rachel,surprise
+5,40,"Ich dachte, wenn du schwanger bist, verabredest du dich nicht mit irgendwem.",Joey,surprise
+6,40,"Ok, Joey.",Rachel,anger
+7,40,"Das hab ich verschwiegen. Ich hab gedacht, er ist ja nicht bloß irgendwer.",Joey,neutral
+8,40,"- Sehr schön. Er soll mich anrufen. - Ich glaub wirklich nicht, dass...",Rachel,fear
+9,40,"Das hab ich verschwiegen. Ich hab gedacht, er ist ja nicht bloß irgendwer.",Joey,sadness
+10,40,"Du sagst es ihm, sonst komm ich ans Set und verabrede mich mit den anderen.",Rachel,joy
+0,41,"Joshua ist weg, das heißt, dass ihr jetzt gehen könnt.",Rachel,neutral
+1,41,"Ist doch egal.",Ross,neutral
+2,41,"Für das, was ich geplant habe, ist es sowieso zu spät.",Ross,neutral
+0,42,"Ah, ah. Ich habe meine Jacke vergessen!",Ross,anger
+1,42,"- Sag ihnen, dass sie warten sollen. - Ok.",Ross,anger
+2,42,"- Warten Sie! Noch nicht abfliegen! - Ok.",Rachel,neutral
+3,42,"Emily.",Ross,neutral
+4,42,"Warte doch! Emily!",Ross,anger
+0,43,"- Du rufst nachher an? - Natürlich.",Monica,neutral
+1,43,"NOT FOUND",Rachel,neutral
+0,44,"Sie sind doch der, der nichts für den Hausmeister gespendet hat.",The Hot Girl,sadness
+1,44,"Egal.",Ross,anger
+2,44,"Ich fand die Reaktionen der anderen Mieter ganz schön unfair.",The Hot Girl,neutral
+3,44,"- Jen. - Jen.",The Hot Girl,neutral
+4,44,"Aber hätten Sie mal Lust, irgendwann Kaffee zu trinken?",Ross,neutral
+5,44,"Ja, das wäre bestimmt nett.",Jen,joy
+6,44,"- Äh... - Oh.",Ross,neutral
+7,44,"Da steht meine Nummer drauf. Rufen Sie mich an.",Jen,joy
+8,44,"Ich rufe Sie auf jeden Fall an.",Ross,neutral
+9,44,"- Schönen Tag noch. - Danke.",Jen,neutral
+10,44,"(KICHERT)",Ross,joy
+11,44,"Ich habe meine Zeitung vergessen.",Jen,neutral
+0,45,"MONICA: Na, klasse. Volltreffer.",Chandler,neutral
+1,45,"CHANDLER: Alle gut festhalten. MONICA: Wieso?",Monica,neutral
+2,45,"NOT FOUND",Rachel,neutral
+3,45,"NOT FOUND",Monica,surprise
+4,45,"- Willst du nicht zur Toilette? - Nein, ich will nicht.",Phoebe,neutral
+5,45,"NOT FOUND",Rachel,neutral
+6,45,"Sie geht nie auf öffentliche Toiletten, das weißt du doch.",Monica,neutral
+7,45,"Und deswegen gilt für mich immer: Kein Papier, kein Pipi hier.",Rachel,neutral
+8,45,"Ach, kommst du doch. Der Schlüssel steckt noch, nicht zumachen.",Phoebe,neutral
+9,45,"Oh, nein, das kann doch nicht wahr sein.",Chandler,fear
+10,45,"NOT FOUND",Joey,neutral
+11,45,"- Was ist denn? - Mein Feuerzeug liegt im Auto.",Chandler,fear
+0,46,"NOT FOUND",Rachel,neutral
+1,46,"NOT FOUND",Phoebe,neutral
+2,46,"Eine Frage, ist Chandler da?",Joey,neutral
+3,46,"Nein, er ist nicht da.",Ross,neutral
+4,46,"Mensch, Leute, Joey hat gesehen, dass Janice ihren Exmann geküsst hat.",Monica,surprise
+5,46,"Was hast du vor? Wie willst du es Chandler sagen?",Ross,surprise
+6,46,"Darüber habe ich nachgedacht und bin zu dem Schluss gekommen,",Joey,neutral
+7,46,"Wenn du das beobachtet hast, musst du es ihm sagen.",Rachel,neutral
+8,46,"Wenn ich ihm das sage, wird ihn das umbringen.",Joey,fear
+9,46,"Warte, bis ich beim Zahnarzt war, vielleicht bringe ich ihn um.",Phoebe,neutral
+0,47,"Hi, was machst du denn hier?",Carol,neutral
+1,47,"Ich wollte dich nur was fragen. Als wir uns damals getrennt haben,",Ross,neutral
+2,47,"Ja, ja, aber nun sind Susan und ich in Mexiko und das Geiseldrama drauf.",Carol,neutral
+3,47,"Wo ist Ben?",Ross,neutral
+4,47,"- Er liegt im Bettchen. - Ah. Ooh.",Carol,neutral
+5,47,"NOT FOUND",Ross,surprise
+6,47,"Na ja, doch, eigentlich schon. Susan wird jeden Moment kommen und",Carol,joy
+7,47,"Euer Hochzeitstag ist doch im Januar, wenn ich mich nicht täusche.",Ross,surprise
+8,47,"Wir feiern einen anderen Jahrestag.",Carol,neutral
+9,47,"Ach so.",Ross,surprise
+10,47,"Na ja, jedenfalls...",Carol,neutral
+0,48,"Einen Hut, ja! Wir brauchen einen Hut. Wo kriegen wir einen kleinen Hut her?",Monica,neutral
+1,48,"Oh, oh, oh! Warte mal, Regenbär.",Rachel,joy
+2,48,"Oh, mein Gott. Du bist ein Genie!",Monica,joy
+3,48,"Oh, Gott. Er ist angenäht.",Rachel,fear
+4,48,"- Gib her, warte. - Ok.",Monica,neutral
+5,48,"- Oh! - Oh.",Rachel,neutral
+6,48,"- Oh! - Oh.",Monica and Rachel,surprise
+7,48,"Oh. Das ist das reinste Blutbad, das ertrage ich nicht!",Rachel,sadness
+0,49,"- Das ist alles nur deine Schuld. - Wieso? Was kann ich denn dafür?",Ross,anger
+1,49,"- Das ist alles nur deine Schuld. - Wieso? Was kann ich denn dafür?",Susan,surprise
+2,49,"Ich wurde noch nie von ihr rausgeworfen, bevor du auftauchtest.",Ross,anger
+3,49,"Ach ja? Carol hat sehr viel unterlassen, bevor ich aufgetaucht bin.",Susan,anger
+6,49,"- Alles, was ich sage, ist ein Problem. - PHOEBE: Hey! Hey! Los, hört auf.",Phoebe,anger
+7,49,"Geht da rein, aber schnell.",Phoebe,anger
+8,49,"Geht da rein, aber schnell.",Phoebe,neutral
+9,49,"Das ist doch wirklich nicht zu fassen.",Phoebe,anger
+10,49,"Und das Erste, was sie mitkriegen, sind eure negativen Schwingungen!",Phoebe,anger
+11,49,"Also, Schluss mit dem Gebrüll, Schluss damit!",Phoebe,anger
+12,49,"Ja, Susan.",Ross,neutral
+13,49,"Zwingt mich nicht weiterzuschreien, dann klingt meine Stimme hässlich.",Phoebe,anger
+14,49,"Ihr müsst jetzt ganz tapfer sein.",Phoebe,neutral
+0,50,"Uh, Joey, wieso hast du mit 'Hurensohn' unterschrieben?",Phoebe,surprise
+1,50,"- Das war ich nicht. Wer war das? - Hurensohn! Verdammter!",Joey,surprise
+2,50,"HURENSOHN",The Dry Cleaner,anger
+3,50,"Ich glaube, wir sollten ihn fragen.",Phoebe,neutral
+0,51,"Ich lasse Carl als eineiigen Zwilling für mich arbeiten, für eine Forschung.",Joey,neutral
+1,51,"Manchmal liegen die guten Ideen einfach vor einem.",Chandler,joy
+2,51,"Vielleicht funktioniert es. Das Problem ist Carls Schauspieltalent.",Joey,neutral
+3,51,"Sonst hast du kein Problem damit?",Monica,neutral
+4,51,"Durch ihn wurde ich mal aus einem Werbespot gerissen.",Joey,neutral
+5,51,"Hey, kriege ich bitte ein Stück Kuchen?",Carl,neutral
+6,51,"Pizza! Wir essen gern Pizza! Na los, raus hier!",Joey,anger
+0,52,"Ein Gast möchte dir für das Essen danken. Darf er reinkommen?",Waitress,neutral
+1,52,"Na klar, so was höre ich immer gern!",Monica,joy
+2,52,"- Kommen Sie herein. - Hi.",Waitress,neutral
+0,53,"In dem Moment wollte ich dich auch küssen. Nur in diesem Moment.",Joey,joy
+1,53,"- In dem Moment. - Aber nur in dem Moment.",Janine,neutral
+2,53,"Und hättest du Lust, äh, noch mal zu küssen?",Joey,joy
+3,53,"Natürlich, bis Silvester sind es noch 2 Wochen hin.",Janine,neutral
+4,53,"Nein.",Joey,neutral
+5,53,"Ich auch nicht.",Janine,neutral
+6,53,"3, 2...",Joey,neutral
+7,53,"Ein Count-down ist nicht nötig.",Janine,joy
+8,53,"Ich dachte bloß, dass ich noch einige Zeit brauche, bis ich so weit bin.",Joey,joy
+0,54,"- Und du, Phoebe? - Ok, ok.",Monica,neutral
+1,54,"PHOEBE: Oh, das ist gut.",Phoebe,neutral
+2,54,"Wenn ich einen Tag lang omnipotent wäre, würde ich mir Frieden wünschen,",Phoebe,joy
+3,54,"Was ist mit dir, Chandler?",Ross,neutral
+4,54,"würde ich mich für immer omnipotent machen.",Chandler,neutral
+5,54,"'Hätte ich einen Wunsch frei, würde ich mir 3 weitere wünschen.'",Rachel,disgust
+6,54,"- ROSS & MONICA: Hey, Joey. - Hey, Kumpel.",All,neutral
+7,54,"Was würdest du tun, wenn du omnipotent wärst?",Monica,neutral
+8,54,"Mich wahrscheinlich umbringen.",Joey,sadness
+9,54,"Wie bitte?",Monica,surprise
+10,54,"Na, wenn 'Little Joey' versagt, lohnt es sich nicht weiterzuleben.",Joey,sadness
+11,54,"Joey, omnipotent.",Ross,surprise
+12,54,"Wirklich?",Joey,neutral
+0,55,"Hm, das tut mir aber sehr leid.",Kate,sadness
+0,56,"- Es tut mir so leid. - MANN: <i>Joey, auf die Bühne!</i>",Stage Manager,anger
+1,56,"Aber kannst du nicht noch das Stück abwarten?",Joey,sadness
+2,56,"Ich bringe dich zum Flughafen. Ich möchte mich doch verabschieden.",Joey,sadness
+3,56,"LAUREN: <i>Wo bist du, Vic?</i>",Lauren,neutral
+4,56,"Mein Flugzeug geht in einer Stunde. Ich fahre jetzt los.",Kate,sadness
+5,56,"LAUREN: <i>Vic?</i>",Lauren,anger
+6,56,"NOT FOUND",Joey,anger
+7,56,"Das soll schon alles gewesen sein?",Lauren,sadness
+8,56,"NOT FOUND",Joey,sadness
+9,56,"Ich werde dir Lebwohl sagen. Lass uns das schnell hinter uns bringen.",Joey,sadness
+10,56,"Aber eines sollst du wissen: Ich werde dich niemals vergessen.",Joey,sadness
+11,56,"Aber wir 2 sind nun mal Verpflichtungen eingegangen,",Joey,sadness
+12,56,"NOT FOUND",Joey,sadness
+13,56,"Und wenn ich dann in 200 Jahren zurückkomme,",Joey,sadness
+14,56,"Und ich werde noch frisch und knackig sein.",Joey,neutral
+15,56,"Also, sag deiner Ur-Ur-Enkelin,",Joey,neutral
+16,56,"Ich wünsche dir alles Gute, Vic!",Lauren,sadness
+0,57,"Das romantischste Lied überhaupt war 'The Way We Were'.",Rachel,neutral
+1,57,"Ah, ich mag den Song von Elton John für, ähm, den Mann in <i>Wer ist hier der Boss?</i>",Phoebe,neutral
+2,57,"- Welcher Song ist das? - Ähm.",Rachel,neutral
+3,57,"PHOEBE: Hallo, Monica. ROSS: Hi, Monica.",Phoebe,joy
+4,57,"RACHEL: Hey, Mon.",Ross,joy
+5,57,"RACHEL: Hey, Mon.",Rachel,joy
+6,57,"- Hat sie gar nicht geschlafen? - ROSS: Nein.",Phoebe,surprise
+7,57,"RACHEL: Hey, Mon.",Ross,neutral
+8,57,"Schon 3 Tage nicht mehr.",Rachel,neutral
+9,57,"bis sie einen Zigarrenstummel von Richard gefunden hat.",Ross,neutral
+10,57,"NOT FOUND",Phoebe,neutral
+11,57,"Und ich konnte nur so einen hohen Ton hören",Phoebe,neutral
+12,57,"'Woher soll eine Maus das Geld zum Telefonieren herkriegen?'",Phoebe,joy
+0,58,"Also, äh, Ross, gehst du heute Abend mit mir ins Theater?",Chandler,neutral
+1,58,"Ist es nicht komisch, dass wir kontrollieren, wie heiß es hergeht?",Ross,disgust
+2,58,"- Hey. - JOEY: Hey, Mon.",Chandler,neutral
+3,58,"Nein, bleib da stehen.",Ross,neutral
+4,58,"- Hey. - JOEY: Hey, Mon.",Monica,surprise
+5,58,"- Möchtest du einen Pfannkuchen? - Du hast Pfannkuchen gemacht?",Joey,joy
+6,58,"- Möchtest du einen Pfannkuchen? - Du hast Pfannkuchen gemacht?",Monica,surprise
+7,58,"Ja. Nimm dir einen Teller.",Joey,joy
+8,58,"Nein, bleib da stehen.",Joey,neutral
+9,58,"wir haben noch Cornflakes, Brötchen, Croissants und",Chandler,neutral
+10,58,"Wir sehen uns Samstag das Spiel an. Ihr seid natürlich eingeladen.",Joey,neutral
+11,58,"- Oh ja. - MONICA: Oh.",Ross,joy
+0,59,"Aber nur, wenn der Graben mit Sandwiches ausgelegt wäre.",Chandler,neutral
+1,59,"Oh ja, Heldensandwiches.",Joey,neutral
+2,59,"Ihr wisst ja, dass ich Pazifistin bin und darum keinen Krieg mag.",Phoebe,neutral
+3,59,"Aber ich würde euch alle töten lassen, wenn es zur Revolution käme.",Phoebe,neutral
+4,59,"Dich nicht, Joey.",Phoebe,neutral
+0,60,"Ach, verdammt, Carl!",Chandler,surprise
+1,60,"Makkaroni und Käse mit aufgeschnittenen Hotdogs.",Monica,neutral
+2,60,"Du hast genug getan. Du solltest wieder damit aufhören.",Chandler,anger
+3,60,"Und wenn wir essen, hören wir uns deine Kassette an.",Monica,joy
+4,60,"- Oh ja, die Kassette. - Mhm.",Chandler,neutral
+5,60,"(TONY BENNETT'S 'THE WAY YOU LOOK TONIGHT' ERTÖNT)",Monica,joy
+6,60,"Ach, du bist so was von lieb.",Monica,joy
+0,61,"- Hi! - Hi!",Monica,joy
+1,61,"- Hi! - Hi!",Phoebe,joy
+2,61,"- Weißt du, was ich gleich tue? - Was denn?",Monica,neutral
+3,61,"NOT FOUND",Phoebe,neutral
+4,61,"Ich sehe mir das Restaurant an, das Pete gekauft hat.",Monica,neutral
+5,61,"- Oh, Monica. Das ist total aufregend! - Ich weiß.",Phoebe,joy
+0,62,"Das mit dem Dreier, du weißt schon... Äh, ha.",Ross,neutral
+1,62,"Ich habe eine Liste aller Frauen, die interessiert sein könnten.",Carol,joy
+2,62,"Da hat aber jemand seine Schularbeiten gemacht.",Ross,surprise
+3,62,"Ich weiß, dass Gail Roston 2-mal darauf steht,",Carol,neutral
+4,62,"Allein dass wir darüber reden, macht mich an.",Ross,neutral
+5,62,"- Oh, mich auch. - Ja?",Carol,neutral
+0,63,"Während wir von der Trauung zum Empfang fuhren,",Ross,joy
+1,63,"NOT FOUND",Rachel,neutral
+2,63,"Aber dir von einer Taube den Ring an den Finger stecken zu lassen,",Ross,anger
+3,63,"Es war super, mit dir verheiratet zu sein.",Rachel,joy
+4,63,"Es waren die leichtverdientesten 400 Mäuse, die ich jemals hatte.",Ross,joy
+5,63,"- Ross, kann ich dich, ähm, etwas fragen? - Ja.",Rachel,sadness
+6,63,"NOT FOUND",Ross,neutral
+7,63,"- Dieser Antrag im Planetarium? - Das war ganz schön dämlich.",Rachel,neutral
+8,63,"NOT FOUND",Ross,sadness
+9,63,"NOT FOUND",Rachel,surprise
+10,63,"Spinnst du? Ich bekam heute Lilien, einen Song und einen Antrag in den Sternen.",Rachel,joy
+11,63,"Das war einfach zauberhaft. Ist dir das spontan eingefallen?",Rachel,joy
+12,63,"NOT FOUND",Rachel,surprise
+13,63,"Äh, nein, das ging mir durch den Kopf, als wir noch zusammen waren.",Ross,neutral
+14,63,"Ich hatte mir vorgestellt, dich, äh, so zu fragen, ob du meine Frau wirst.",Ross,neutral
+15,63,"Da wäre es mir, äh, schwer gefallen, Nein zu sagen.",Rachel,neutral
+16,63,"Ein Glück, dass ich dich nicht gefragt habe, das wäre sehr teuer geworden.",Ross,neutral
+17,63,"NOT FOUND",Rachel,neutral
+18,63,"Äh, wenn der Beiwagen eine Windschutzscheibe gehabt hätte,",Ross,neutral
+19,63,"- Ich werde darüber nachdenken. - Das wollte ich hören.",Rachel,neutral
+20,63,"NOT FOUND",Ross,neutral
+0,64,"Das habt ihr gegessen, nur um mich nicht traurig zu machen?",Rachel,surprise
+1,64,"Ehrlich gesagt, ich hab's nicht gegessen. Es steht im Bad.",Monica,joy
+2,64,"Nein, ich hab's gegessen.",Joey,neutral
+3,64,"Unseres steht in Monicas Schlafzimmer.",Mrs. Geller,neutral
+4,64,"Da irren Sie sich, das habe ich auch gegessen.",Joey,neutral
+0,65,"Deshalb freue ich mich, dass es keine Probleme gibt.",Rachel,joy
+1,65,"Ich bin in der Auswahlkommission, Sie gewinnen schon eine Stimme.",Joanna,neutral
+2,65,"Oh, das ist ja klasse!",Rachel,joy
+3,65,"- Ich hab bei den Sondergrößen angefangen. - Wirklich?",Joanna,neutral
+4,65,"- Wirklich? - Nein. Ha, ha.",Rachel,surprise
+5,65,"NOT FOUND",Joanna,joy
+6,65,"Doch.",Joanna,neutral
+7,65,"Sie mit Ihren Qualifikationen werden mit keinem Mann ins Bett müssen.",Joanna,neutral
+8,65,"Aber zu mir könnten Sie doch ein bisschen nett sein, oder?",Joanna,neutral
+9,65,"Oh. Ha, ha.",Rachel,fear
+10,65,"- Ach, ich habe heute so gute Laune! - Ah!",Joanna,joy
+0,66,"Oh, mein Gott. Chandler ist einfach so verschwunden?",Phoebe,surprise
+1,66,"Vielleicht hat er es gar nicht so gemeint. Vielleicht meinte er,",Rachel,neutral
+2,66,"Oder dass es vielleicht doch zu voreilig war, seinen Namen zu ändern:",Phoebe,neutral
+3,66,"- Er hat Panik gekriegt und verschwand! - Sei doch nicht so negativ!",Ross,surprise
+4,66,"Kannst du dir nicht vorstellen, dass 'Tut mir leid' in der Wohnung sitzt?",Phoebe,anger
+5,66,"Ich glaube, dass er recht hat. Was wollen wir jetzt tun?",Rachel,sadness
+6,66,"Ich muss ihn unbedingt finden und wieder zurückbringen.",Ross,neutral
+7,66,"NOT FOUND",Ross,neutral
+8,66,"Und ihr sorgt dafür, dass Monica nichts von der Sache erfährt, ok?",Ross,neutral
+11,66,"Ich werde ihn zurückbringen.",Ross,neutral
+0,67,"- Hey! - ALLE: Hey.",Rachel,joy
+1,67,"- Hey! - ALLE: Hey.",All,joy
+2,67,"Hey, kennt jemand von euch einen süßen Jungen?",Rachel,neutral
+3,67,"Ja, meinen guten Freund Joey hier.",Chandler,joy
+4,67,"Oh, tut mir leid. Danke, Chandler.",Joey,joy
+5,67,"Ralph Lauren hat einen Tisch bei einer Wohltätigkeitsveranstaltung bestellt,",Rachel,neutral
+6,67,"NOT FOUND",Monica,neutral
+7,67,"oder eine Krankheit... Ralph spricht undeutlich.",Rachel,neutral
+8,67,"oder eine Krankheit... Ralph spricht undeutlich.",Monica,neutral
+9,67,"Ich brauche eine Begleitung für die Veranstaltung.",Rachel,surprise
+10,67,"- Was für einen Herrn suchst du dafür? - Jemanden, der einen Smoking hat",Phoebe,neutral
+0,68,"- Hey. - Hey.",Rachel,joy
+1,68,"- Hi. - Habt ihr was vor?",Ross,neutral
+2,68,"Ja, Rachel und ich gehen gleich zum Friseur.",Phoebe,neutral
+3,68,"- Hi. - Habt ihr was vor?",Rachel,surprise
+4,68,"- Ach ja? - Ich will erst hören, was er will.",Phoebe,neutral
+5,68,"Elizabeths Vater möchte sich mit mir treffen.",Ross,sadness
+6,68,"Bist du denn nicht der Vater von Elizabeth?",Chandler,surprise
+7,68,"Also, für mich ist es wichtig, dass er mich mag.",Ross,fear
+8,68,"Es wäre mir eine große Hilfe, wenn ihr hierbleiben würdet.",Ross,sadness
+9,68,"- Na klar, wir bleiben hier. - Danke.",All,joy
+10,68,"NOT FOUND",Ross,joy
+11,68,"Wir wissen doch, wie schwierig Gespräche mit Eltern sind.",Monica,neutral
+0,69,"- Oh, hi. Wie geht es denn? - Es geht mir gut.",Rachel,joy
+1,69,"Nachher soll ich aufs Revier, um Fotos anzusehen.",Tag,sadness
+2,69,"- Danke, dass ich kommen durfte. - Sie wollen schon gehen?",Tag,neutral
+3,69,"NOT FOUND",Ross,neutral
+4,69,"- Danke, dass ich kommen durfte. - Sie wollen schon gehen?",Ross,joy
+5,69,"Wir hatten gar keine Gelegenheit, uns zu unterhalten.",Ross,neutral
+6,69,"Was sagen Sie, woher kommen Sie?",Ross,neutral
+7,69,"NOT FOUND",Tag,neutral
+8,69,"NOT FOUND",Ross,neutral
+9,69,"Über das Thema von vorhin sollten wir noch mal reden.",Rachel,neutral
+10,69,"- Ok. - Ähm...",Tag,neutral
+11,69,"Ich hätte das nicht sagen sollen.",Rachel,sadness
+12,69,"NOT FOUND",Rachel,neutral
+13,69,"Es ist unwichtig, was ich für Sie empfinde.",Rachel,sadness
+14,69,"Ich würde so gern ins Büro gehen und nie wieder darüber reden.",Rachel,sadness
+15,69,"NOT FOUND",Tag,neutral
+16,69,"- Nein, für mich nicht. - Na klar, ich habe Sie verschreckt.",Rachel,sadness
+17,69,"Das Einzige, was mich verschreckt hat, war, dass nie etwas passieren wird.",Tag,sadness
+18,69,"- Wirklich? - Ja.",Rachel,surprise
+19,69,"Also bitte feuern Sie mich nicht, wenn ich das jetzt tue.",Tag,sadness
+0,70,"Hol ihn dir! Hol ihn dir! Lauf!",Ross,anger
+1,70,"Du brauchst nur einen Haufen zahnloser Typen, die sich schlagen.",Chandler,neutral
+2,70,"Gib ab! Gut so!",Ross,joy
+3,70,"Gib ab! Gut so!",Chandler,joy
+4,70,"CHANDLER: Feuer ihn rein! Schieß!",All,joy
+5,70,"- Hey, seht! Wir sind auf der Leinwand. - Oh, oh, oh.",Chandler,surprise
+0,71,"Ich bin hoch erfreut, dass ich ihn behalten darf.",Rachel,joy
+1,71,"Ja, ich freue mich auch.",Joey,neutral
+2,71,"Wusstest du, dass der in der Kopfstütze integrierte Lautsprecher hat?",Rachel,surprise
+3,71,"- Nein, wirklich? - Ja.",Joey,surprise
+4,71,"Du kannst damit fernsehen oder auch Radio hören.",Rachel,joy
+5,71,"Mein Sessel heilt sich selbst.",Joey,neutral
+0,72,"Joseph, hast du denn gestern Abend gar nicht geübt?",Phoebe,anger
+1,72,"Doch, wie verrückt.",Joey,sadness
+2,72,"'Eisberg'.",Phoebe,anger
+3,72,"Das ist ein Gis.",Joey,neutral
+4,72,"NOT FOUND",Phoebe,neutral
+5,72,"- Ich habe keine Gitarre angefasst. - Aber du stellst meine Methode infrage.",Joey,surprise
+6,72,"- Ich habe keine Gitarre angefasst. - Aber du stellst meine Methode infrage.",Phoebe,anger
+7,72,"Ich stelle sie nicht in Frage. Ich sage nur, dass sie dämlich ist.",Joey,anger
+8,72,"Danke sehr.",Monica,neutral
+9,72,"meine Methode als dämlich zu bezeichnen.",Phoebe,anger
+10,72,"'Die anderen Schüler' warst ja auch du!",Joey,anger
+11,72,"Vielleicht wäre es angebracht, wenn du etwas fleißiger sein würdest?",Phoebe,anger
+12,72,"Vielleicht wäre es angebracht, wenn du etwas fleißiger sein würdest?",Joey,anger
+13,72,"NOT FOUND",Joey,anger
+14,72,"NOT FOUND",Joey,anger
+15,72,"Ich will einen richtigen Lehrer. Da. Andy Cooper. Er unterrichtet Gitarre.",Joey,neutral
+16,72,"weil keiner mehr dein <i>Bad, Bad Leroy Brown</i> hören kann.",Phoebe,anger
+17,72,"(SINGT) <i>Baddest man in the whole damn town...</i>",Rachel,neutral
+18,72,"Ja, du bist natürlich auf seiner Seite.",Phoebe,anger
+0,73,"Er muss doch arbeiten. Nun mach schon.",Ross,anger
+1,73,"Au!",Joey,anger
+2,73,"Das kriegst du wieder, wenn du 5 Seiten geschrieben hast.",Ross,anger
+0,74,"- Hi. - Hi.",Rachel,joy
+1,74,"Hi.",Ross,neutral
+2,74,"Ich finde, dass wir beide da noch etwas bereden sollten.",Rachel,joy
+3,74,"Ja, das finde ich auch. Wollen wir nicht hineingehen?",Ross,sadness
+4,74,"NOT FOUND",Rachel,surprise
+5,74,"Und damit es nicht allzu peinlich ist, ist es besser, wenn ich zuerst rede.",Ross,neutral
+6,74,"- Ok. - Na gut.",Rachel,neutral
+7,74,"Ross und Rachel. Rachel und Ross. Ha.",Ross,neutral
+8,74,"Was?",Rachel,surprise
+9,74,"Die Nacht hat wirklich Spaß gemacht, und sie war leidenschaftlich,",Ross,sadness
+10,74,"Ich frage noch mal: was?",Rachel,surprise
+11,74,"NOT FOUND",Ross,neutral
+12,74,"NOT FOUND",Ross,neutral
+13,74,"Ich frage noch mal: was?",Ross,neutral
+14,74,"Wenn du es wirklich willst, dann können wir es wiederholen.",Ross,neutral
+15,74,"NOT FOUND",Ross,neutral
+16,74,"Ja, ich würde damit schon klarkommen. Ich hätte sogar jetzt Zeit, also...",Ross,neutral
+17,74,"Ja, ich würde damit schon klarkommen. Ich hätte sogar jetzt Zeit, also...",Rachel,joy
+18,74,"Ja, natürlich.",Ross,neutral
+19,74,"NOT FOUND",Rachel,anger
+0,75,"Vielleicht gibt's eine Liga, in die wir eintreten könnten.",Rachel,neutral
+0,76,"- Die kenne ich! - Na ja!",Chandler,joy
+1,76,"Wahnsinn, das war ja ganz leicht. Ha, ha.",Ross,surprise
+2,76,"Ja.",Chandler,neutral
+3,76,"Ja.",Ross,neutral
+4,76,"Wenn du im Bett liegst mit einer Frau...",Chandler,joy
+5,76,"Ja.",Ross,neutral
+6,76,"...und, äh, ähm, während du mit ihr beschäftigt bist,",Chandler,joy
+7,76,"von Elle MacPherson oder von dem Mädchen aus dem Kopierladen.",Chandler,joy
+8,76,"- Die mit dem Bauchnabelpiercing? Oh. - Oh! Ja, die.",Ross,joy
+9,76,"Und dann fällt dir auf einmal deine Mutter ein.",Chandler,anger
+10,76,"Und du sagst: 'Mom, na los, verschwinde!'",Chandler,anger
+11,76,"Du verstehst schon... Na, du verstehst das doch!",Chandler,anger
+12,76,"Du verstehst schon... Na, du verstehst das doch!",Chandler,neutral
+13,76,"Du verstehst schon... Na, du verstehst das doch!",Chandler,surprise
+14,76,"Deine Mutter? Du musst dabei an deine Mutter denken? Du spinnst doch wohl!",Ross,disgust
+15,76,"NOT FOUND",Chandler,neutral
+16,76,"NOT FOUND",Ross,neutral
+0,77,"PHOEBE: Oh.",Phoebe,surprise
+1,77,"NOT FOUND",Ross,surprise
+2,77,"- ROSS: Das ist Emma. - Wem sieht sie denn nun ähnlich?",Phoebe,neutral
+3,77,"Ist das ein Witz? Sie ist hinreißend! Ganz und gar Rachel.",Ross,joy
+4,77,"Tut mir leid. Wieso seid ihr nicht zusammen? Ich frage auch nie wieder.",Phoebe,neutral
+5,77,"NOT FOUND",Phoebe,neutral
+6,77,"Ja, ich weiß. Weil ihr euch nicht zusammengehörig fühlt.",Phoebe,neutral
+7,77,"NOT FOUND",Phoebe,neutral
+8,77,"Das ist alles sehr kompliziert, ok?",Ross,sadness
+9,77,"Du liebst sie. Du hast sie immer geliebt, und nun ist auch ein Kind da.",Phoebe,neutral
+10,77,"Wir waren zusammen. Dann waren wir es nicht mehr. Und dann wieder doch.",Ross,sadness
+11,77,"NOT FOUND",Ross,neutral
+12,77,"Wir waren zusammen. Dann waren wir es nicht mehr. Und dann wieder doch.",Ross,sadness
+13,77,"Wir waren zusammen. Dann waren wir es nicht mehr. Und dann wieder doch.",Ross,sadness
+14,77,"Sieh mal, sie kam auf die Welt und dachte, alles... Typisch ich.",Ross,sadness
+15,77,"Sag mal, machen die hier irgendwas ins Wasser?",Ross,neutral
+16,77,"Rachel und ich kommen zurzeit aufs Beste miteinander zurecht.",Ross,sadness
+17,77,"Ja, und das könnte vielleicht kaputt gehen, wenn ihr es noch mal versucht.",Phoebe,neutral
+18,77,"- Ja, ganz genau. - Ja.",Ross,neutral
+19,77,"Oder du bekommst alles, was du seit deiner Jugend haben wolltest.",Phoebe,neutral
+0,78,"Ich hatte ganz vergessen, wie schön das Autofahren ist.",Rachel,joy
+1,78,"Du hast einen ungültigen Führerschein? Fahr sofort rechts ran.",Ross,neutral
+2,78,"Ross, sei ganz ruhig, ganz relaxed. Du musst dich fallen lassen.",Rachel,neutral
+3,78,"Hast du sie noch alle? Hör sofort auf, hier rumzualbern.",Ross,anger
+4,78,"Alles, was ich hier tue, ist 'rumporschen', ok?",Rachel,joy
+5,78,"Oje.",Rachel,fear
+6,78,"Ok, ganz ruhig bleiben. Es wird dir hier gar nichts passieren, ok?",Ross,neutral
+7,78,"Meinst du? Ist das dein Ernst?",Rachel,fear
+8,78,"Ich habe mit mir gesprochen. Du wanderst in den Knast!",Ross,anger
+0,79,"Hallo, Schatz. Ich habe dich heute vermisst.",Monica,joy
+1,79,"- CHANDLER: Wirklich? - Ja. Hallo.",Chandler,surprise
+2,79,"- Was willst du heute Abend machen? - Oh, nun, vielleicht könnten wir, äh...",Monica,neutral
+3,79,"- Was willst du heute Abend machen? - Oh, nun, vielleicht könnten wir, äh...",Chandler,neutral
+4,79,"Du willst mich antörnen, indem du ein Chaos veranstaltest?",Monica,joy
+5,79,"NOT FOUND",Monica,joy
+6,79,"Außerdem machen wir morgen diesen Fruchtbarkeitstest.",Monica,neutral
+7,79,"Müssen wir wirklich diesen Test machen?",Chandler,sadness
+8,79,"Wir versuchen seit einem Jahr, ein Baby zu kriegen.",Monica,neutral
+9,79,"Wir sollten wirklich untersuchen, ob alles ok ist.",Monica,neutral
+10,79,"- Alles reine Routine. - Ich will es nicht in einen Becher tun.",Chandler,sadness
+0,80,"- Phoebe. Hallo. - Max, kennst du meine Freunde schon?",Phoebe,neutral
+1,80,"Nein. Hast du David gesehen?",Max,neutral
+2,80,"Nein, er war noch nicht hier.",Phoebe,neutral
+3,80,"Richte ihm aus, wir fliegen nach Minsk. Er soll seine Sachen packen.",Max,neutral
+4,80,"- Minsk? - Minsk, das liegt in Russland.",Phoebe,surprise
+5,80,"- Minsk? - Minsk, das liegt in Russland.",Max,neutral
+6,80,"Ich weiß, wo das liegt.",Phoebe,neutral
+7,80,"Für 3 Jahre. Alle Kosten werden übernommen.",Max,joy
+8,80,"Und wann werdet ihr fliegen?",Phoebe,neutral
+9,80,"Am ersten Januar.",Max,neutral
+0,81,"NOT FOUND",Elizabeth,joy
+1,81,"- Sie wollten mich sprechen? - Ja, kommen Sie bitte rein.",Ross,neutral
+2,81,"Oh, gut!",Ross,joy
+0,82,"Ziemlich gut. Der Roboter wollte nur nicht so, wie ich wollte.",Joey,joy
+1,82,"Verdammte Roboter! Sie sind doch dazu geboren, uns zu dienen!",Chandler,anger
+2,82,"Dieser Kerl, der ihn bedient, kann mich nicht leiden.",Joey,neutral
+3,82,"Er ließ C.H.E.E.S.E. den Tisch mit den Sandwiches umstoßen,",Joey,anger
+4,82,"Er ließ C.H.E.E.S.E. den Tisch mit den Sandwiches umstoßen,",Joey,neutral
+5,82,"Ein oder 2 Sandwiches vom Boden zu essen, ist ok, aber mehr?",Joey,anger
+6,82,"NOT FOUND",Joey,surprise
+7,82,"Wieso lässt du ihn nicht rauswerfen?",Phoebe,neutral
+8,82,"Das werde ich tun müssen. Ich will es nicht, aber ich bin der Star.",Joey,anger
+9,82,"NOT FOUND",Joey,neutral
+10,82,"Ein oder 2 Sandwiches vom Boden zu essen, ist ok, aber mehr?",Joey,neutral
+11,82,"Augenblick.",Joey,neutral
+12,82,"Joey Tribbiani.",Joey,neutral
+13,82,"Joe! Ich habe ein Casting für dich.",Estelle,joy
+14,82,"Augenblick.",Joey,surprise
+15,82,"<i>Es handelt sich</i> <i>um die Hauptrolle in der Serie.</i>",Estelle,neutral
+16,82,"Der Schauspieler, der die Rolle spielt, weiß nicht, dass er gefeuert wird.",Estelle,neutral
+17,82,"Ich habe die Rolle in <i>Mac und C.H.E.E.S.E.</i>",Estelle,neutral
+18,82,"Ich habe die Rolle in <i>Mac und C.H.E.E.S.E.</i>",Joey,anger
+0,83,"Wenn du so dringend ein Baby willst, dann klau doch eins!",Monica,anger
+1,83,"Seit wann bist du denn so verrückt nach Babys?",Monica,surprise
+2,83,"Ich bin nicht verrückt nach Babys, ich bin auf uns verrückt.",Chandler,joy
+3,83,"Was?",Monica,surprise
+4,83,"Wir haben öfter über Babys gesprochen. Es muss ja nicht sofort sein.",Chandler,neutral
+5,83,"Aber ich denke, dass wir das schon hinkriegen. Wir sind gut.",Chandler,neutral
+6,83,"Wir sind wirklich gut.",Chandler,neutral
+7,83,"Wir sind wirklich gut.",Chandler,joy
+0,84,"- Hast du ihn erwischt? - ROSS: Was hat er gesagt?",Monica,surprise
+1,84,"- Hast du ihn erwischt? - ROSS: Was hat er gesagt?",Ross,surprise
+2,84,"Er sagte, ähm: 'Nett, dass wir uns kennen gelernt haben, Glenda.'",Phoebe,neutral
+3,84,"NOT FOUND",Rachel,surprise
+4,84,"- Wieso denn? - Ihr habt gesehen, wie er rauslief.",Phoebe,sadness
+5,84,"Der will sich nicht mit seiner Tochter unterhalten, die er verließ.",Phoebe,sadness
+6,84,"Was hast du zu ihm gesagt?",Joey,neutral
+7,84,"Dass ich Frances' letzten Willen ausführe und dass es sehr wichtig wäre,",Phoebe,neutral
+0,85,"<i>Ja, sicher.</i>",Rachel,neutral
+1,85,"In ein paar Sekunden werdet ihr sehen, wie Ross über mich herfällt.",Rachel,joy
+2,85,"Ja, aber vorher werden wir noch hören, wieso.",Ross,neutral
+3,85,"<i>Wusstest du, dass ich mal mit einem</i> <i>Rucksack durch Westeuropa gereist bin?</i>",Rachel,neutral
+4,85,"Gleich werdet ihr sehen, wie er bettelt.",Rachel,joy
+5,85,"- Rachel, du bettelst Ross an. - Was?",Phoebe,surprise
+6,85,"NOT FOUND",Rachel,surprise
+7,85,"NOT FOUND",Ross,joy
+8,85,"NOT FOUND",Rachel,surprise
+9,85,"- Woraus schließt ihr das? - Aus dieser Westeuropa-Geschichte.",Monica,joy
+10,85,"Ja, man erzählt diese Geschichte nur, wenn man auf Sex aus ist.",Chandler,anger
+11,85,"- Woher kennt ihr die Geschichte? - Woher kennst du die Geschichte?",Rachel,surprise
+12,85,"NOT FOUND",Joey,neutral
+13,85,"Ich kenn sie von meiner Freundin Irene. So ein Typ hat sie ihr erzählt.",Rachel,neutral
+14,85,"Der Typ war ich!",Joey,surprise
+15,85,"Nein, sie sagte mir, er heißt Ken Adams.",Rachel,neutral
+16,85,"Ken Adams!",Joey,surprise
+0,86,"Wie sieht's aus, seid ihr so weit?",Ross,neutral
+1,86,"Mom rief an, um mich zu erinnern, das Haar nicht hochzustecken.",Monica,neutral
+2,86,"Manchmal kann ich an nichts anderes denken.",Ross,neutral
+3,86,"Tut mir leid, dass ich zu spät bin. Konnte meine Augenringe nicht finden.",Phoebe,neutral
+0,87,"NOT FOUND",Ross,neutral
+1,87,"NOT FOUND",Ross,neutral
+2,87,"Ok. Ok, gut, aber eine Frage habe ich noch an Sie.",Ross,neutral
+3,87,"Wenn wir verschwinden, sollen wir gehen oder laufen,",Ross,neutral
+4,87,"Hören Sie auf! Er redet langsam, aber vielleicht pinkelt er schnell. Los!",Charlie,joy
+0,88,"Wie lange geht das bitte schon?",Phoebe,surprise
+1,88,"- Weißt du, Alexandra hat... - Oh, sie hat einen Namen?",Monica,neutral
+2,88,"Nicht böse sein, ja?",Phoebe,surprise
+3,88,"Nicht böse sein, ja?",Monica,sadness
+4,88,"Ok, zu spät. Ich verschwinde. Na, komm, Chandler, wir gehen.",Phoebe,anger
+5,88,"Weißt du, Phoebe, ich habe...",Chandler,neutral
+0,89,"JOEY (RUFT): Ben! Ben!",Joey,fear
+1,89,"Vielleicht hört dich das Baby und zieht die Notbremse, du Idiot!",Chandler,anger
+2,89,"Haltet den Bus auf!",Joey,fear
+3,89,"Sind Sie sicher, dass er mir nicht die Hand gebrochen hat?",Monica,neutral
+4,89,"Das ist eine ganz harmlose Knochenquetschung.",Doctor,neutral
+5,89,"- Tut mir sagenhaft leid. - Schon ok.",Ross,sadness
+6,89,"Sagenhaft, ja.",Ross,sadness
+7,89,"NOT FOUND",Ross,sadness
+8,89,"NOT FOUND",Ross,joy
+9,89,"Das muss später gefeiert werden.",Ross,neutral
+10,89,"Hey.",Ross,neutral
+0,90,"RACHEL: So, Paolo, du ziehst dich jetzt an",Rachel,joy
+1,90,"Rachel, wie konnte das passieren?",Monica,neutral
+2,90,"Ich weiß nicht, er ist mir gestern über den Weg gelaufen.",Rachel,fear
+3,90,"- Wo denn? - In seiner Wohnung.",Phoebe,neutral
+4,90,"- Wo denn? - In seiner Wohnung.",Rachel,neutral
+5,90,"Hast du vergessen, dass der Herr sich an Phoebe rangemacht hat?",Joey,anger
+6,90,"Ja, ich finde das ja auch mies. Ich bin eine Versagerin.",Rachel,sadness
+0,91,"Ich hab doch bloß mal probiert. Was habt ihr denn?",Phoebe,surprise
+1,91,"Das ist doch aber Muttermilch!",Ross,neutral
+2,91,"Na und?",Phoebe,neutral
+3,91,"Phoebe, das da ist Saft, der aus einem Menschen gepresst wurde.",Rachel,neutral
+4,91,"Was soll denn bloß die Aufregung?",Joey,anger
+5,91,"Das gehört sich doch nicht!",Chandler,surprise
+6,91,"Was fällt euch ein, ihm die ganze Muttermilch wegzutrinken?",Ross,disgust
+7,91,"- Willst du nicht mal wenigstens kosten? - Nein.",Phoebe,neutral
+8,91,"NOT FOUND",Ross,disgust
+9,91,"Auch nicht, wenn du dir klar machst, dass es nur Milch ist?",Phoebe,neutral
+10,91,"Nicht mal, wenn auf Carols Brust ein Foto von ihm prangen würde.",Ross,disgust
+0,92,"(ALLE GEMEINSAM) Oh.",All,surprise
+1,92,"Leg doch bitte nicht deine Füße auf meine neue...",Ross,disgust
+2,92,"Entschuldige.",Phoebe,joy
+3,92,"(ALLE SCHREIEN AUF)",Rachel,surprise
+4,92,"Mein Apothekertisch!",Ross,surprise
+5,92,"- PHOEBE: Was? - Nein!",Phoebe,surprise
+6,92,"Oh, mein Gott!",Rachel,fear
+7,92,"- Oh, Gott! Wo hast du den her? - Von Pottery Barn, verstanden?",Phoebe,surprise
+8,92,"Oh, mein Gott!",Rachel,anger
+9,92,"dann ist doch unser Tisch sehr viel mehr wert als $1 und 50.",Phoebe,anger
+10,92,"Dieser hier riecht auch nicht nach Opium.",Phoebe,disgust
+11,92,"Er riecht nach Wein, den du hier vergossen hast.",Ross,anger
+0,93,"Wie geht es ihr?",Rachel,sadness
+1,93,"Sie schläft ein bisschen, das wird ihr gut tun.",Phoebe,neutral
+2,93,"Und ihre Haare?",Ross,neutral
+3,93,"NOT FOUND",Phoebe,sadness
+4,93,"Ich hab auf die eine Seite eine Klammer gesteckt, das stoppt das Kräuseln.",Phoebe,neutral
+5,93,"Dürfen wir zu ihr?",Joey,neutral
+6,93,"Deine Haare sehen zu gut aus. Das würde sie nur aufregen.",Phoebe,sadness
+7,93,"- Na, wie geht's dir? - Es geht mir gut.",Joey,sadness
+0,94,"Obwohl die Verpackung sehr ansprechend ist, für Groß und Klein.",Chandler,neutral
+1,94,"- Wieso denn nicht? - Keine Angst, die schmeckt gut.",Carol,joy
+2,94,"Nein, Mama, das trink ich nicht.",Ross,disgust
+3,94,"- Wieso denn nicht? - Keine Angst, die schmeckt gut.",Phoebe,neutral
+4,94,"Ja, sie schmeckt ein bisschen süß. So wie...",Joey,neutral
+5,94,"- So wie was? - Wie 'ne Beutelmelone.",Susan,joy
+6,94,"Richtig.",Joey,neutral
+7,94,"Du hast sie gekostet?",Ross,surprise
+8,94,"Ja.",Susan,neutral
+9,94,"Du hast sie wirklich gekostet.",Ross,anger
+10,94,"Und wenn du's noch so oft wiederholst, du musst es hinnehmen.",Susan,neutral
+11,94,"Gib mir die Flasche.",Ross,anger
+0,95,"Aus welchem Grund sollten Greg und Jenny uns eine falsche Nummer geben?",Monica,anger
+1,95,"So wie ich das sehe, haben sie euch auch falsche Namen genannt.",Joey,neutral
+2,95,"Nie im Leben erfindet man einen falschen Namen, höchstens eine falsche Nummer.",Monica,anger
+3,95,"Ken Adams, freut mich sehr.",Joey,neutral
+4,95,"Regina Phalange.",Phoebe,neutral
+5,95,"- Dazu hatten sie keinen Grund. - MONICA: Eigentlich nicht.",Chandler,surprise
+6,95,"Na ja, du hast schon viele Witze erzählt.",Monica,anger
+7,95,"Sie waren ja auch alle witzig. Ein Witz witziger als der andere!",Chandler,surprise
+8,95,"Witzig! Witzig!",Monica,anger
+9,95,"- Vielleicht lag's auch an deinen Fragen. - Was war mit meinen Fragen?",Chandler,neutral
+10,95,"- Vielleicht lag's auch an deinen Fragen. - Was war mit meinen Fragen?",Monica,neutral
+0,96,"Nein, nichts passiert. Nur mein Fuß juckt so.",Cliff,neutral
+1,96,"Oh, warte.",Phoebe,neutral
+2,96,"Wow, eigentlich rede ich länger mit einer Frau, bevor ich mit ihr rumschmuse.",Cliff,surprise
+3,96,"Sei ganz locker. Reden können wir nachher.",Phoebe,joy
+0,97,"Die Tapeten sind verblichen, aber das macht nichts.",Monica,joy
+1,97,"Oh.",Phoebe,joy
+2,97,"- Hey. Oh! - CHANDLER: <i>Hallo.</i>",Chandler,neutral
+3,97,"Oh, Monica.",Phoebe,joy
+4,97,"NOT FOUND",Monica,joy
+5,97,"- Na, dann können wir ja spielen. - Ok.",Phoebe,joy
+6,97,"Oh, Monica.",Monica,neutral
+7,97,"Ich habe ein paar Sachen für das Haus mitgebracht. Seht euch das an. Ha, ha.",Phoebe,joy
+8,97,"Was ist das?",Monica,surprise
+9,97,"Ein Hund. Wer ein Haus hat, sollte sich auch einen Hund halten.",Phoebe,joy
+10,97,"Ja, aber doch keinen, der einem aufs Haus pinkelt.",Monica,surprise
+11,97,"Er ist so groß geraten, weil das Haus auf radioaktivem Müll gebaut wurde.",Phoebe,joy
+12,97,"Und wenn das Haus eine Erkältung hat, kriegt es das hier.",Chandler,surprise
+13,97,"Nein, das ist für den Geist, der unterm Dach wohnt.",Phoebe,neutral
+14,97,"- Ich will aber keinen Geist. - Na klar, wer will schon einen Geist?",Monica,fear
+15,97,"weil nämlich das Haus auf der Erde eines indianischen Friedhofs steht.",Phoebe,neutral
+16,97,"weil nämlich das Haus auf der Erde eines indianischen Friedhofs steht.",Ross,surprise
+17,97,"NOT FOUND",Phoebe,neutral
+18,97,"NOT FOUND",Rachel,surprise
+19,97,"NOT FOUND",All,neutral
+20,97,"- Ich muss mal mit dir reden, ja? - Ok. Was ist?",Rachel,joy
+21,97,"NOT FOUND",Ross,neutral
+0,98,"In 30 Sekunden werde ich verschwunden sein, damit du mit ihm allein bist.",Jeannine,anger
+1,98,"- Also bitte, tu, was du kannst. - Ich weiß nicht, was du meinst.",Monica,disgust
+2,98,"Wenn du es nicht probierst, werde ich es versuchen.",Jeannine,anger
+3,98,"- Würdest du jetzt bitte verschwinden? - Wiedersehen, Monica.",Monica,joy
+4,98,"NOT FOUND",Ross,anger
+0,99,"NOT FOUND",Monica,joy
+1,99,"BEIDE: Schön, schön.",Ross and Rachel,neutral
+2,99,"Aufgepasst, Kinder.",Phoebe,joy
+3,99,"NOT FOUND",Ross and Rachel,surprise
+4,99,"- ROSS & RACHEL: Ooh. - Und jetzt?",Phoebe,joy
+5,99,"(BEIDE RUFEN)",Ross and Rachel,surprise
+6,99,"In so einem Haus bin ich aufgewachsen.",Chandler,surprise
+7,99,"Na, wie ist es gelaufen? Los, erzähl schon.",Rachel,neutral
+8,99,"Tja, der Film war klasse, das Abendessen war klasse,",Chandler,neutral
+0,100,"NOT FOUND",Monica,neutral
+0,101,"- Hey, ist Ross noch hier? - Äh, nein, Rach, er ist weg.",Rachel,sadness
+0,102,"Frag mich nicht.",Monica,neutral
+1,102,"NOT FOUND",Rachel,neutral
+0,103,"Sie ist eine Emma.",Monica,neutral
+1,103,"Ja, aber du liebst doch den Namen.",Rachel,sadness
+2,103,"Ja, aber dich lieb ich mehr.",Monica,joy
+3,103,"Es passt sowieso nicht zu Bing. Ich bin angeschmiert.",Monica,neutral
+4,103,"NOT FOUND",Monica,joy
+0,104,"Ich bin eine glückliche Ente, quak-quak, ich bin immer so gut gelaunt.",Chandler,joy
+1,104,"Netter Versuch.",Chandler,sadness
+2,104,"MONICA: Das ist noch nicht alles.",Monica,joy
+3,104,"Hör zu, Monica...",Chandler,neutral
+4,104,"NOT FOUND",Monica,surprise
+5,104,"Das hat keinen Sinn.",Chandler,anger
+6,104,"Das wird dir gefallen.",Monica,joy
+7,104,"Ich finde dich klasse. Ich liebe dich, Monica.",Chandler,joy
+8,104,"Was hast du gesagt?",Monica,surprise
+9,104,"Gar nichts. Dass ich dich klasse finde, und dann habe ich nichts mehr gesagt.",Chandler,fear
+10,104,"MONICA: Du hast gesagt, dass du mich liebst.",Monica,surprise
+11,104,"Das ist nicht wahr.",Chandler,fear
+12,104,"- Doch, das ist wahr. - Nein.",Monica,surprise
+13,104,"Das ist nicht wahr.",Chandler,fear
+14,104,"MONICA: Du hast gesagt, dass du mich liebst.",Monica,joy
+15,104,"Schluss damit. Schluss damit.",Chandler,anger
+0,105,"NOT FOUND",Monica,neutral
+1,105,"Hallo, Greg? Hier ist Monica aus dem Flugzeug.",Monica,neutral
+2,105,"Die Nummer, die du uns gabst, äh, die 8-5-3...",Monica,anger
+3,105,"Das ist ihre alte Nummer. Jenny verwechselt sie ständig.",Monica,anger
+4,105,"- Jenny! Das sieht Jenny ähnlich! - Ich weiß.",Chandler,joy
+5,105,"Wir wollten euch vorschlagen, äh, dass wir uns Samstag treffen.",Monica,neutral
+6,105,"Ok, wie wär's mit Sonntag?",Monica,neutral
+7,105,"Ok, wie wär's mit Sonntag?",Monica,neutral
+8,105,"Gut, ähm, und die Woche drauf?",Monica,joy
+9,105,"Und die Woche drauf?",Monica,joy
+10,105,"Weißt du was, Greg? Ha.",Monica,anger
+11,105,"Wir haben auch viel zu tun, weil wir erfolgreiche, witzige Menschen sind.",Monica,anger
+0,106,"Erinnerst du dich an das Mädchen vom College, das Regisseurin wurde?",Joey,neutral
+1,106,"Oh ja, Dana Keystone. Sie war in meinem Bewegungs-Kurs.",Chandler,neutral
+2,106,"- Was ist bitte ein Bewegungs-Kurs? - Das sollte nur Pantomime heißen.",Phoebe,neutral
+3,106,"NOT FOUND",Monica,neutral
+4,106,"Sie dreht den neuen Al-Pacino-Film. Verschaff mir ein Casting.",Joey,joy
+5,106,"Oh. Ich habe sie 10 Jahre nicht gesehen.",Chandler,neutral
+0,107,"NOT FOUND",Phoebe,neutral
+1,107,"Du bist doch ein guter Schauspieler.",Rachel,neutral
+2,107,"- Meinst du das ernst? - Wie kannst du so was fragen?",Joey,surprise
+3,107,"- Meinst du das ernst? - Wie kannst du so was fragen?",Rachel,surprise
+0,108,"NOT FOUND",Joey,surprise
+1,108,"Leute, ich habe jetzt schon wieder Wehen!",Phoebe,fear
+2,108,"Aber sie tun gar nicht so weh. Oh, sie tun doch weh! Au.",Phoebe,surprise
+3,108,"Oh.",Phoebe,anger
+4,108,"Oh.",Phoebe,anger
+5,108,"Oh.",Phoebe,anger
+6,108,"Au! Au! Au!",Phoebe,anger
+7,108,"Oh.",Phoebe,surprise
+8,108,"Oh, schade, ich dachte, das wäre es schon gewesen.",Phoebe,sadness
+9,108,"Hey, wo sind Monica und Rachel?",Ross,neutral
+10,108,"Oh ja, ich habe dich auch lieb, ok, bis dann.",Frank,joy
+11,108,"- Hi. - Hi.",Rachel,joy
+12,108,"Das war die Mutter von Alice. Alice ist vor 5 Stunden losgefahren.",Frank,fear
+13,108,"Sie wird es schon schaffen.",Rachel,neutral
+14,108,"- Ja. - Ja.",Frank,neutral
+0,109,"Die Videokamera habe ich aufgestellt, weil ich Joey verführen wollte.",Monica,neutral
+1,109,"Das ging schief, denn ich ließ mich nicht verführen.",Joey,joy
+2,109,"Wieso hast du Joeys Unterhose aufbewahrt?",Ross,disgust
+3,109,"Ich ziehe Jungs aus und will die Unterhose behalten.",Monica,sadness
+4,109,"Jetzt haben wir endlich erfahren, wer hier von uns ekelhaft ist.",Joey,anger
+5,109,"Ja?",Joey,neutral
+6,109,"Jetzt werde ich mich wieder meinem Topf widmen.",Joey,neutral
+7,109,"Ich werd nur die Haut essen, das Fleisch könnt ihr haben.",Joey,neutral
+0,110,"- du hast den Preis von früher bezahlt. - Ja.",Phoebe,neutral
+1,110,"Ach, verstehe,",Rachel,neutral
+2,110,"Aus welcher Epoche stammt der?",Phoebe,neutral
+3,110,"Äh, aus längst vergangenen Zeiten.",Rachel,neutral
+4,110,"Ja. Ja, das sehe ich.",Phoebe,neutral
+5,110,"- Der ist wirklich perfekt. - Ja, der ist schön.",Phoebe,joy
+6,110,"Bestimmt hat er eine große Zeit hinter sich.",Phoebe,joy
+7,110,"Wurde dir gesagt, wo er herkommt?",Phoebe,neutral
+8,110,"Ja, ich weiß, wo er herkommt, und zwar aus, äh, White Plains.",Rachel,joy
+9,110,"Oh, das ist sicher ein magischer Ort.",Phoebe,joy
+0,111,"NOT FOUND",Chandler,anger
+1,111,"Häh?",Monica,neutral
+2,111,"Als wir gestern Karten gespielt haben, hast du mich immer so angesehen.",Chandler,neutral
+0,112,"Na ja, ich war... Ach, halt die Klappe!",Phoebe,anger
+1,112,"'Nun lebt wohl, Phoebe und Ursula. Ihr werdet mir fehlen.",Phoebe,sadness
+2,112,"Abgesehen von dem Gedicht, aber das kennst du ja, oder?",Ursula,neutral
+3,112,"Nein!",Phoebe,sadness
+4,112,"Ok, warte, hier.",Ursula,neutral
+0,113,"Chandler wird hier einziehen.",Monica,neutral
+1,113,"Rachel.",Rachel,sadness
+2,113,"NOT FOUND",Monica,neutral
+3,113,"- Aber ich... - Lass mich bitte ausreden.",Monica,sadness
+4,113,"Diese Entscheidung ist nicht aus einer Sektlaune entstanden.",Monica,neutral
+5,113,"Tatsache?",Monica,neutral
+6,113,"Wirklich?",Rachel,surprise
+7,113,"Ja, das wird er.",Monica,neutral
+8,113,"Dann werden wir nicht mehr zusammenwohnen?",Rachel,sadness
+9,113,"Nein.",Monica,sadness
+10,113,"Ich fasse es nicht. Ich werde dich so vermissen.",Rachel,sadness
+11,113,"Ich werde dich auch vermissen.",Monica,sadness
+12,113,"- Das ist das Ende einer Ära! - Na, das sag ich doch!",Rachel,sadness
+13,113,"Nun...",Monica,sadness
