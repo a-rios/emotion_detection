@@ -22,6 +22,12 @@ replaced: | This was so touching. :red_heart: :red_heart: | love |
 translated: | Das war so ergreifend. :heart: :heart: | love |
 replaced:| Das war so ergreifend. [rotes Herz] [rotes Herz] | love |
 
+## Installation
+
+## Fine-Tuning
+
+## Prediction
+
 ## References:
 [1] Demszky, Dorottya, Dana Movshovitz-Attias, Jeongwoo Ko, Alan Cowen, Gaurav Nemade, and Sujith Ravi (2020). “[GoEmotions: A Dataset of Fine-Grained Emotions](https://aclanthology.org/2020.acl-main.372/)”. In: Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics. Online: Association for Computational Linguistics, pp. 4040–4054.
 
