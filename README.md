@@ -1,18 +1,20 @@
 # Emotion Detection from Text
 This repository contains data and code for emotion detection in text, developped in the [EASIER project](https://www.project-easier.eu/) on sign language translation.
 The end goal within the project is to provide emotional cues to an avatar for the translation direction from spoken to sign language. While the EASIER project is multilingual, emotion detection so far is restricted to German. 
+
+## Data
 Since datasets labeled with emotions are mostly limited to English, we use different methods of transfer to obtain a German version for two of the standard emotion recognition datasets:
  1. [MELD](https://affective-meld.github.io/): subtitles of the TV show Friends [3]
  2. [GoEmotions](https://github.com/monologg/GoEmotions-pytorch): Reddit posts [1]
  
-## Transfer to German
-### MELD
+### Transfer to German
+#### MELD
 For the MELD Friends dataset, we use human-translated German subtitles obtained from the web and align them via timestamps and sentence similarity to the English subtitles (we measure sentence similarity with [LASER](https://github.com/facebookresearch/LASER)[4]). The alignment is somewhat noisy, as subtitles are not always split identically between the 2 languages, therefore, 1:n or n:1 alignments are possible.
 
-### GoEmotions
+#### GoEmotions
 For GoEmotions, there are no human translations available, instead we use machine translation to obtain the German version of the samples. The model we use for this purpose is [Facebook's winning WMT19 submission](https://huggingface.co/facebook/wmt19-en-de) for English->German translation [2].
 
-## Emojis and Emoticons
+##### Emojis and Emoticons
 GoEmotions has samples that contain emojis and/or emoticons. We use the [emot library](https://github.com/NeelShah18/emot) to restore emojis after translation. We also use emot to create additional versions of the GoEmotions data by replacing either only emojis or both emojis and emoticons with textual descriptions. We use the same model to translate the textual descriptions obtained from the emot library, see example below.
 
 || sample | label |
