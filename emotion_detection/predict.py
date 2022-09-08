@@ -32,7 +32,8 @@ def main(args):
                                   remove_unaligned=not args.keep_unaligned,
                                   no_labels=args.no_labels,
                                   save_texts=save_texts,
-                                  csv_delimiter=args.csv_delimiter)
+                                  csv_delimiter=args.csv_delimiter,
+                                  csv_names=args.column_names)
     model.set_testset(test_set, out_format=args.output_format, out_file=args.output_file)
     if args.no_labels:
         model.set_no_labels_run()
@@ -55,7 +56,7 @@ if __name__ == "__main__":
     parser.add_argument('--batch_size', type=int, default=32)
     parser.add_argument("--accelerator", type=str, default="gpu", help="Pytorch lightning accelerator argument: cpu or gpu. Default: gpu.")
     parser.add_argument("--devices", type=int, nargs="+", required=True, help="Device id(s).")
-    parser.add_argument("--test", type=str, default=None, required=True, help="Path to the source test file (to evaluate after training is finished).")
+    parser.add_argument("--test", type=str, default=None, metavar='PATH', required=True, help="Path to the test file for evaluation.")
     parser.add_argument("--input_format", type=str, default="json", required=True, help="Input format, options are: json, csv. Default: json.")
     parser.add_argument("--csv_delimiter", type=str, default=",", help="Delimiter to read in csv. Default: comma.")
     parser.add_argument("--label_name", type=str, help="Key/column name for labels.")
@@ -66,6 +67,7 @@ if __name__ == "__main__":
     parser.add_argument("--keep_unaligned", action='store_true', help="Keep samples where sting == 'NOT FOUND' (aligned German Friends set).")
     parser.add_argument("--no_labels", action='store_true', help="Test set has no labels (skip calculating metrics).")
     parser.add_argument("--no_progress_bar", action='store_true', help="Disable progress bar printing.")
+    parser.add_argument("--column_names", type=str, help="If csv does not include column names, provide them as a comma separated list of strings ('A,B,C').")
     args = parser.parse_args()
     main(args)
 

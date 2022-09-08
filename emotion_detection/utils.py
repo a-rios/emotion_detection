@@ -33,7 +33,7 @@ def probs_to_json(outputs: List[dict],
             result.append(sample_dict)
 
     if out_format == 'json':
-        json_data = json.dumps(result, indent=3)
+        json_data = json.dumps(result, indent=3, ensure_ascii=False)
         with open(out_file, 'w') as f:
             f.write(json_data)
     elif out_format == 'csv':

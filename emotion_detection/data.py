@@ -20,7 +20,8 @@ class EmotionDataset(Dataset):
                  no_labels: Optional[bool]=False,
                  emotions: Optional[dict]=None,
                  save_texts: Optional[bool]=False,
-                 csv_delimiter: Optional[str]=","):
+                 csv_delimiter: Optional[str]=",",
+                 csv_names: Optional[str]=None):
         self.tokenizer = tokenizer
         self.file_format = file_format
         self.utterance_name = utterance_name
@@ -28,11 +29,16 @@ class EmotionDataset(Dataset):
         self.split_name = split_name # train, dev, test
         self.no_labels = no_labels
         self.max_length = max_length
+        self.csv_names = csv_names
 
         if self.file_format == "json":
             self.df = pd.read_json(in_file)
         elif self.file_format == "csv":
-            self.df = pd.read_csv(in_file, sep=csv_delimiter)
+            if csv_names is not None:
+                columns = [c for c in csv_names.split(",")]
+                self.df = pd.read_csv(in_file, sep=csv_delimiter, names=columns)
+            else:
+                self.df = pd.read_csv(in_file, sep=csv_delimiter)
 
         # only get emotions from training set
         self.emotions = emotions if emotions is not None else {e:i for  i,e in  enumerate(self.df[self.label_name].unique()) }
