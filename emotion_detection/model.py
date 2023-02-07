@@ -222,7 +222,7 @@ class EmotionPrediction(pl.LightningModule):
         m = self.sentence_classifier_model
         num_layers = m.config.num_hidden_layers
         opt_parameters = [{'params': m.bert.embeddings.parameters(), 'lr': lr*decay**num_layers}]
-        opt_parameters += [{'params': m.bert.encoder.layer[l].parameters(), 'lr': lr*decay**(num_layers-l+1)}
+        opt_parameters += [{'params': m.bert.encoder.layer[l].parameters(), 'lr': lr*decay**(num_layers-l+2)}
                             for l in range(num_layers)]
 
         return opt_parameters
