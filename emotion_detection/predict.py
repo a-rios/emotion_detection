@@ -17,7 +17,7 @@ class LitProgressBar(TQDMProgressBar):
             return bar
 
 def main(args):
-    model = EmotionPrediction.load_from_checkpoint(checkpoint_path=args.checkpoint, checkpoint_folder=os.path.dirname(args.checkpoint))
+    model = EmotionPrediction.load_from_checkpoint(checkpoint_path=args.checkpoint, map_location=f"cuda:{args.device}", cache_dir=args.cache_dir)
     tokenizer =  model.get_tokenizer()
 
     save_texts = True if args.output_format is not None else False # if we need to print results per sample, store original text with id in data set (so we don't have to reconstruct this from the tokenizer)
@@ -45,7 +45,7 @@ def main(args):
         progress_bar_callback = TQDMProgressBar(refresh_rate=args.progress_bar_refresh_rate)
 
     trainer = pl.Trainer(accelerator=args.accelerator,
-                         devices=args.devices,
+                         devices=[args.device],
                          strategy='ddp_find_unused_parameters_false' if torch.cuda.is_available() else None,
                          callbacks=[progress_bar_callback])
     trainer.test(model)
@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
     parser.add_argument('--batch_size', type=int, default=32)
     parser.add_argument("--accelerator", type=str, default="gpu", help="Pytorch lightning accelerator argument: cpu or gpu. Default: gpu.")
-    parser.add_argument("--devices", type=int, nargs="+", required=True, help="Device id(s).")
+    parser.add_argument("--device", type=int, required=True, help="Device id.")
     parser.add_argument("--test", type=str, default=None, metavar='PATH', required=True, help="Path to the test file for evaluation.")
     parser.add_argument("--input_format", type=str, default="json", required=True, help="Input format, options are: json, csv. Default: json.")
     parser.add_argument("--csv_delimiter", type=str, default=",", help="Delimiter to read in csv. Default: comma.")
@@ -70,6 +70,7 @@ if __name__ == "__main__":
     parser.add_argument("--no_labels", action='store_true', help="Test set has no labels (skip calculating metrics).")
     parser.add_argument("--no_progress_bar", action='store_true', help="Disable progress bar printing.")
     parser.add_argument("--column_names", type=str, help="If csv does not include column names, provide them as a comma separated list of strings ('A,B,C').")
+    parser.add_argument("--cache_dir", type=str, default=None, help="Cache directory for huggingface models.")
     args = parser.parse_args()
     main(args)
 

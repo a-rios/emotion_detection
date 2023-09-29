@@ -1,6 +1,6 @@
 from transformers import AutoTokenizer,  AutoModelForSequenceClassification, AutoConfig
 from torch.utils.data import DataLoader, Dataset
-from typing import Optional, Dict, List, Tuple
+from typing import Optional, Dict, List, Tuple, Any
 import pytorch_lightning as pl
 from .data import EmotionDataset
 import torch
@@ -12,9 +12,12 @@ from . import metrics
 from . import utils
 
 class EmotionPrediction(pl.LightningModule):
-    def __init__(self, params):
+    def __init__(self, params, **kwargs:Optional[Any]):
         super().__init__()
         self.args = params
+        if kwargs is not None:
+            for name,param in kwargs.items():
+                setattr(self.args, name, param)
 
         if self.args.from_pretrained is not None:
             self._set_config()
@@ -176,7 +179,7 @@ class EmotionPrediction(pl.LightningModule):
 
             F1_per_class = {}
             for emotion_class in range(len(tqdm_dict["F1_per_class"])):
-                self.log("F1 on " + self.emotions_inv[emotion_class], tqdm_dict["F1_per_class"][emotion_class], prog_bar=False)
+                self.log("F1_on_" + self.emotions_inv[emotion_class], tqdm_dict["F1_per_class"][emotion_class], prog_bar=False)
 
             if self.args.verbose:
                 for k, v in tqdm_dict.items():
