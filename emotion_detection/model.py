@@ -27,6 +27,7 @@ class EmotionPrediction(pl.LightningModule):
         self.num_not_improved = 0
         self.save_hyperparameters()
         self.no_labels_run = False
+        self.validation_step_outputs = []
 
     def _load_pretrained(self):
         self.sentence_classifier_model =  AutoModelForSequenceClassification.from_pretrained(self.args.from_pretrained, config=self.config, cache_dir=self.args.cache_dir, ignore_mismatched_sizes=True)
@@ -65,10 +66,12 @@ class EmotionPrediction(pl.LightningModule):
     def set_testset(self,
                     test_set: EmotionDataset,
                     out_format: Optional[str]=None,
-                    out_file: Optional[str]=None):
+                    out_file: Optional[str]=None,
+                    print_logits: Optional[bool]=False):
         self.test_set = test_set
         self.test_out_format = out_format
         self.test_out_file = out_file
+        self.print_logits = print_logits
 
     def set_no_labels_run(self,):
         self.no_labels_run = True
@@ -157,12 +160,13 @@ class EmotionPrediction(pl.LightningModule):
 
         scores['logits'] = outputs['logits']
         scores['texts'] = texts
+        self.validation_step_outputs.append(scores)
         return scores
 
-    def validation_epoch_end(self, outputs):
+    def on_validation_epoch_end(self):
         result = None
         if not self.no_labels_run:
-            tqdm_dict = metrics.get_log_scores(outputs=outputs,
+            tqdm_dict = metrics.get_log_scores(outputs=self.validation_step_outputs,
                                             emotions=self.emotions)
 
             self.log('vloss', tqdm_dict["vloss"], prog_bar=False)
@@ -182,19 +186,23 @@ class EmotionPrediction(pl.LightningModule):
                 #print(*tqdm_dict.items(), sep='\n')
 
             result = {'progress_bar': tqdm_dict, 'log': tqdm_dict, 'vloss': tqdm_dict["vloss"]}
+
+            if hasattr(self, 'test_out_format') and self.test_out_format is not None:
+                utils.probs_to_outfile(outputs=self.validation_step_outputs,
+                                test_set=self.test_set,
+                                out_file=self.test_out_file,
+                                out_format=self.test_out_format,
+                                emotions_inv=self.emotions_inv,
+                                print_logits=self.print_logits)
+
+            self.validation_step_outputs.clear()
         return result
 
     def test_step(self, batch, batch_nb):
         return self.validation_step(batch, batch_nb)
 
-    def test_epoch_end(self, outputs):
-        result = self.validation_epoch_end(outputs)
-        if self.test_out_format is not None:
-            utils.probs_to_json(outputs=outputs,
-                                test_set=self.test_set,
-                                out_file=self.test_out_file,
-                                out_format=self.test_out_format,
-                                emotions_inv=self.emotions_inv)
+    def on_test_epoch_end(self):
+        result = self.on_validation_epoch_end()
 
     def configure_optimizers(self):
         """
@@ -233,8 +241,7 @@ class EmotionPrediction(pl.LightningModule):
         checkpoint['loss_weights'] = self.loss_weights
 
     def on_load_checkpoint(self, checkpoint) -> None:
-        self.config = AutoConfig.from_pretrained(os.path.join(self.args.save_dir, self.args.save_prefix))
-        self.load_state_dict(checkpoint['state_dict'])
+        self.load_state_dict(checkpoint['state_dict']) # no idea why, but pytorch lightning only loads the pretrained params, need to to load checkpoint params here manually
         self.emotions = checkpoint['emotions']
         self.emotions_inv = checkpoint['emotions_inv']
         self.loss_weights = checkpoint['loss_weights']

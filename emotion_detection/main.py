@@ -5,7 +5,7 @@ from pytorch_lightning.loggers import WandbLogger, TensorBoardLogger
 from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.callbacks.early_stopping import EarlyStopping
 from pytorch_lightning.callbacks import TQDMProgressBar
-from pytorch_lightning.plugins import DDPPlugin
+from pytorch_lightning.strategies import DDPStrategy
 import random
 import logging
 import os
@@ -87,9 +87,7 @@ def main(args):
         mode=model.lr_mode)
 
     trainer = pl.Trainer(accelerator=args.accelerator, devices=args.devices, strategy='ddp_find_unused_parameters_false' if torch.cuda.is_available() else None,
-                         track_grad_norm=-1,
                          max_steps=-1 if not args.debug else 1,
-                         replace_sampler_ddp=False,
                          accumulate_grad_batches=args.grad_accum,
                          val_check_interval=args.val_every if not args.debug else 1,
                          num_sanity_val_steps=args.num_sanity_val_steps,
@@ -98,7 +96,7 @@ def main(args):
                          limit_test_batches=False,
                          logger=logger,
                          enable_checkpointing=True if not args.disable_checkpointing else False,
-                         precision=32 if args.fp32 else 16, amp_backend='native', # amp_backend='apex', amp_level='O2', -> gradient overflows, can't use it
+                         precision=32 if args.fp32 else '16-mixed',
                          callbacks=[early_stop_callback, checkpoint_callback, progress_bar_callback]
                          )
     ## write config + tokenizer to save_dir
@@ -159,7 +157,7 @@ if __name__ == "__main__":
     parser.add_argument('--grad_ckpt', action='store_true', help='Enable gradient checkpointing to save memory')
 
     # logging args
-    parser.add_argument("--progress_bar_refresh_rate", type=int, default=0, help="How often to refresh progress bar (in steps). Value 0 disables progress bar.")
+    parser.add_argument("--progress_bar_refresh_rate", type=int, default=10, help="How often to refresh progress bar (in steps). Value 0 disables progress bar.")
     parser.add_argument("--fp32", action='store_true', help="default is fp16. Use --fp32 to switch to fp32")
     parser.add_argument("--wandb", type=str, default=None, help="WandB project name to use if logging fine-tuning with WandB.")
     parser.add_argument("--wandb_entity", type=str, default=None, help="WandB entity name to use if logging fine-tuning with WandB.")
