@@ -3,13 +3,13 @@ import argparse
 import numpy as np
 import torch
 import pytorch_lightning as pl
-from pytorch_lightning.callbacks import TQDMProgressBar
+from pytorch_lightning.callbacks import ProgressBar
 import os
 from . import data
 from .model import EmotionPrediction
 from .data import EmotionDataset
 
-class LitProgressBar(TQDMProgressBar):
+class LitProgressBar(ProgressBar):
         def init_test_tqdm(self):
             bar = super().init_test_tqdm()
             bar.set_description('predicting..')
@@ -17,7 +17,7 @@ class LitProgressBar(TQDMProgressBar):
             return bar
 
 def main(args):
-    model = EmotionPrediction.load_from_checkpoint(checkpoint_path=args.checkpoint, map_location=f"cuda:{args.device}", cache_dir=args.cache_dir)
+    model = EmotionPrediction.load_from_checkpoint(checkpoint_path=args.checkpoint, map_location="cpu", cache_dir=args.cache_dir)
     tokenizer =  model.get_tokenizer()
 
     save_texts = True if args.output_format is not None else False # if we need to print results per sample, store original text with id in data set (so we don't have to reconstruct this from the tokenizer)
@@ -42,11 +42,9 @@ def main(args):
     if args.no_progress_bar:
         progress_bar_callback = LitProgressBar()
     else:
-        progress_bar_callback = TQDMProgressBar(refresh_rate=args.progress_bar_refresh_rate)
+        progress_bar_callback = ProgressBar(refresh_rate=args.progress_bar_refresh_rate)
 
-    trainer = pl.Trainer(accelerator=args.accelerator,
-                         devices=[args.device],
-                         strategy='ddp_find_unused_parameters_false' if torch.cuda.is_available() else None,
+    trainer = pl.Trainer(accelerator="ddp_cpu",
                          callbacks=[progress_bar_callback])
     trainer.test(model)
 
@@ -55,8 +53,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Emotion Prediction")
 
     parser.add_argument('--batch_size', type=int, default=32)
-    parser.add_argument("--accelerator", type=str, default="gpu", help="Pytorch lightning accelerator argument: cpu or gpu. Default: gpu.")
-    parser.add_argument("--device", type=int, required=True, help="Device id.")
     parser.add_argument("--test", type=str, default=None, metavar='PATH', required=True, help="Path to the test file for evaluation.")
     parser.add_argument("--input_format", type=str, default="json", required=True, help="Input format, options are: json, csv. Default: json.")
     parser.add_argument("--csv_delimiter", type=str, default=",", help="Delimiter to read in csv. Default: comma.")
