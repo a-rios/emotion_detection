@@ -190,13 +190,13 @@ class EmotionPrediction(pl.LightningModule):
 
             result = {'progress_bar': tqdm_dict, 'log': tqdm_dict, 'vloss': tqdm_dict["vloss"]}
 
-            if hasattr(self, 'test_out_format') and self.test_out_format is not None:
-                utils.probs_to_outfile(outputs=self.validation_step_outputs,
-                                test_set=self.test_set,
-                                out_file=self.test_out_file,
-                                out_format=self.test_out_format,
-                                emotions_inv=self.emotions_inv,
-                                print_logits=self.print_logits)
+        if hasattr(self, 'test_out_format') and self.test_out_format is not None:
+            utils.probs_to_outfile(outputs=self.validation_step_outputs,
+                            test_set=self.test_set,
+                            out_file=self.test_out_file,
+                            out_format=self.test_out_format,
+                            emotions_inv=self.emotions_inv,
+                            print_logits=self.print_logits)
 
             self.validation_step_outputs.clear()
         return result
