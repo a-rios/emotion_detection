@@ -19,23 +19,31 @@ def probs_to_outfile(outputs: List[dict],
                   out_file: str,
                   out_format: str,
                   print_logits: bool,
-                  emotions_inv: dict):
+                  emotions_inv: dict,
+                  in_json: List[dict]):
     result = []
     for output in outputs:  # batched
         if not print_logits:
             batch_logits = torch.nn.functional.softmax(output['logits'], dim=-1).cpu()
         else:
             batch_logits = output['logits'].cpu()
-        for i, text in enumerate(output['texts']):
-            idx, text = _get_idx(text)
-            sample_logits = batch_logits[i,:].tolist()
-            emotion_dict = {emotions_inv[n]:logit  for n, logit in enumerate(sample_logits) }
-            sample_dict = {"id": idx,
-                           "text": text,
-                           "lang": "de_DE",
-                           "gender": "unknown", #TODO: not available with all datasets
-                           "emotion-text": emotion_dict}
-            result.append(sample_dict)
+        if in_json is not None:
+            for (i, text), sample in zip(enumerate(output['texts']), in_json):
+                sample_logits = batch_logits[i,:].tolist()
+                emotion_dict = {emotions_inv[n]:logit  for n, logit in enumerate(sample_logits) }
+                sample['emotion-text'] = emotion_dict
+            result=in_json
+        else:
+            for i, text in enumerate(output['texts']):
+                idx, text = _get_idx(text)
+                sample_logits = batch_logits[i,:].tolist()
+                emotion_dict = {emotions_inv[n]:logit  for n, logit in enumerate(sample_logits) }
+                sample_dict = {"id": idx,
+                            "text": text,
+                            "lang": "de_DE",
+                            "gender": "unknown", #TODO: not available with all datasets
+                            "emotion-text": emotion_dict}
+                result.append(sample_dict)
 
     if out_format == 'json':
         json_data = json.dumps(result, indent=3, ensure_ascii=False)

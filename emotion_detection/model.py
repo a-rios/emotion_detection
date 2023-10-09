@@ -196,7 +196,8 @@ class EmotionPrediction(pl.LightningModule):
                             out_file=self.test_out_file,
                             out_format=self.test_out_format,
                             emotions_inv=self.emotions_inv,
-                            print_logits=self.print_logits)
+                            print_logits=self.print_logits,
+                            in_json=self.test_set.json_data)
 
             self.validation_step_outputs.clear()
         return result

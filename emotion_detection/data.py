@@ -2,6 +2,7 @@ from transformers import AutoTokenizer
 from torch.utils.data import DataLoader, Dataset
 from typing import Optional, Dict, List, Tuple
 import pandas as pd
+import json
 import torch
 import math
 import numpy as np
@@ -32,7 +33,8 @@ class EmotionDataset(Dataset):
         self.csv_names = csv_names
 
         if self.file_format == "json":
-            self.df = pd.read_json(in_file)
+            with open(in_file, 'r') as i:
+                self.json_data = json.load(i)
         elif self.file_format == "csv":
             if csv_names is not None:
                 columns = [c for c in csv_names.split(",")]
@@ -40,29 +42,35 @@ class EmotionDataset(Dataset):
             else:
                 self.df = pd.read_csv(in_file, sep=csv_delimiter)
 
-        # only get emotions from training set
-        self.emotions = emotions if emotions is not None else {e:i for  i,e in  enumerate(self.df[self.label_name].unique()) }
+        if self.file_format == "csv":
+            # only get emotions from training set
+            self.emotions = emotions if emotions is not None else {e:i for  i,e in  enumerate(self.df[self.label_name].unique()) }
 
-        if self.no_labels: # only for testing
-            self.sources = [self.tokenize_input(utterance) for utterance in self.df[utterance_name] ]
-            if save_texts:
-                self.texts = [utterance for utterance in self.df[utterance_name]]
-        else:
-            # only get max len from training set
-            if remove_unaligned:
-                self.sources, self.labels = zip(*[(self.tokenize_input(utterance), label) for utterance, label in zip(self.df[utterance_name], self.df[label_name])  if utterance != "NOT FOUND"])
-                if save_texts:
-                    self.texts = [utterance for utterance in self.df[utterance_name] if utterance != "NOT FOUND"]
-            else:
-                self.sources, self.labels = zip(*[(self.tokenize_input(utterance), label) for utterance, label in zip(self.df[utterance_name], self.df[label_name]) ]) # no truncation
+            if self.no_labels: # only for testing
+                self.sources = [self.tokenize_input(utterance) for utterance in self.df[utterance_name] ]
                 if save_texts:
                     self.texts = [utterance for utterance in self.df[utterance_name]]
-
-            print(f"Frequency of labels in {split_name}: ")
-            print("\t{:<25}{:<25}Number of Samples:".format("Key:", "Emotion:"))
-            for e in self.emotions.keys():
-                print(f"\t{self.emotions[e]:<25}{e:<25}{self.labels.count(e)}")
-            print()
+            else:
+                # only get max len from training set
+                if remove_unaligned:
+                    self.sources, self.labels = zip(*[(self.tokenize_input(utterance), label) for utterance, label in zip(self.df[utterance_name], self.df[label_name])  if utterance != "NOT FOUND"])
+                    if save_texts:
+                        self.texts = [utterance for utterance in self.df[utterance_name] if utterance != "NOT FOUND"]
+                else:
+                    self.sources, self.labels = zip(*[(self.tokenize_input(utterance), label) for utterance, label in zip(self.df[utterance_name], self.df[label_name]) ]) # no truncation
+                    if save_texts:
+                        self.texts = [utterance for utterance in self.df[utterance_name]]
+                print(f"Frequency of labels in {split_name}: ")
+                print("\t{:<25}{:<25}Number of Samples:".format("Key:", "Emotion:"))
+                for e in self.emotions.keys():
+                    print(f"\t{self.emotions[e]:<25}{e:<25}{self.labels.count(e)}")
+                print()
+        elif self.file_format == 'json': # input = json, only for testing
+            if isinstance(self.json_data, dict): # single sample
+                self.json_data = [self.json_data]
+            self.sources = [self.tokenize_input(item[utterance_name]) for item in self.json_data]
+            assert emotions is not None, "no emotions dict given"
+            self.emotions = emotions
 
     def __len__(self):
         return len(self.sources)
