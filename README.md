@@ -1,5 +1,5 @@
 # Emotion Detection from Text
-This repository contains data and code for emotion detection in text, developped in the [EASIER project](https://www.project-easier.eu/) on sign language translation.
+This repository contains data and code for emotion detection in text, developed in the [EASIER project](https://www.project-easier.eu/) on sign language translation.
 The end goal within the project is to provide emotional cues to an avatar for the translation direction from spoken to sign language. While the EASIER project is multilingual, emotion detection so far is restricted to German. 
 
 ## Data
